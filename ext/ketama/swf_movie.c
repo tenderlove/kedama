@@ -54,6 +54,19 @@ static VALUE save(VALUE self, VALUE filename)
   return self;
 }
 
+static VALUE native_set_dimension(VALUE self, VALUE _x, VALUE _y)
+{
+  SWFMovie movie;
+  Data_Get_Struct(self, struct SWFMovie_s, movie);
+
+  SWFMovie_setDimension(
+      movie,
+      (float)NUM2DBL(_x),
+      (float)NUM2DBL(_y)
+  );
+  return self;
+}
+
 void init_swf_movie()
 {
   VALUE ketama  = rb_define_module("Ketama");
@@ -65,4 +78,5 @@ void init_swf_movie()
   rb_define_method(klass, "save", save, 1);
   rb_define_private_method(klass, "add_thing", add_thing, 1);
   rb_define_private_method(klass, "native_set_background", native_set_background, 3);
+  rb_define_private_method(klass, "native_set_dimension", native_set_dimension, 2);
 }

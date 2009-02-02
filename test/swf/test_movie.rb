@@ -4,6 +4,12 @@ require 'tempfile'
 
 module SWF
   class TestMovie < Ketama::TestCase
+    @@test_number = 0
+
+    def setup
+      @@test_number += 1
+    end
+
     def test_new
       assert Ketama::SWF::Movie.new
     end
@@ -40,7 +46,7 @@ module SWF
       text.color = [0, 0, 0, 0xff]
       movie << text
       assert movie.advance
-      movie.save File.join(Dir::tmpdir, 'test02.swf')
+      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
     end
 
     def test_with_ttf
@@ -60,7 +66,7 @@ module SWF
 
       movie << text
       assert movie.advance
-      movie.save File.join(Dir::tmpdir, 'test03.swf')
+      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
     end
 
     def test_save
@@ -73,7 +79,23 @@ module SWF
       text.color = [0xff, 0, 0, 0xff]
       movie << text
       assert movie.advance
-      movie.save File.join(Dir::tmpdir, 'test01.swf')
+      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
+    end
+
+    def test_set_dimension
+      assert movie = Ketama::SWF::Movie.new
+
+      movie.dimension = [300, 250]
+
+      assert text = Ketama::SWF::Text.new(
+        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+        "abc"
+      )
+      text.height = 20
+      text.color = [0xff, 0, 0, 0xff]
+      movie << text
+      assert movie.advance
+      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
     end
   end
 end
