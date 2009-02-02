@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/ketama
+lib/ketama.rb
+test/test_ketama.rb

@@ -1,0 +1,11 @@
+.*.swp
+*.tmproj
+ext/ketama/*.o
+ext/ketama/*.dll
+ext/ketama/Makefile
+ext/ketama/*.log
+ext/ketama/*.bundle
+ext/ketama/*.a
+ext/ketama/*.so
+ext/ketama/conftest.dSYM
+tags
