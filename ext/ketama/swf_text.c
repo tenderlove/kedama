@@ -71,6 +71,15 @@ static VALUE move_to(VALUE self, VALUE x, VALUE y)
   return self;
 }
 
+static VALUE width_of(VALUE self, VALUE string)
+{
+  SWFText text;
+  Data_Get_Struct(self, struct SWFText_s, text);
+  return rb_float_new(
+      SWFText_getUTF8StringWidth(text, StringValuePtr(string))
+  );
+}
+
 void init_swf_text()
 {
   VALUE ketama  = rb_define_module("Ketama");
@@ -82,6 +91,7 @@ void init_swf_text()
   rb_define_method(klass, "height=", set_height, 1);
   rb_define_method(klass, "spacing=", set_spacing, 1);
   rb_define_method(klass, "move_to", move_to, 2);
+  rb_define_method(klass, "width_of", width_of, 1);
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
 }

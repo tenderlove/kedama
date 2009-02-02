@@ -42,5 +42,11 @@ module SWF
       assert text.font = File.join(ASSETS, 'font01.fdb')
       assert text.spacing = 10
     end
+
+    def test_string_width
+      assert text = Ketama::SWF::Text.new()
+      assert text.font = File.join(ASSETS, 'test.ttf')
+      assert_in_delta 18.85, text.width_of("foo"), 0.0001
+    end
   end
 end
