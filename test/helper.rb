@@ -1,5 +1,6 @@
 $VERBOSE = true
 require 'test/unit'
+require 'tempfile'
 
 %w(../lib ../ext).each do |path|
   $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), path)))

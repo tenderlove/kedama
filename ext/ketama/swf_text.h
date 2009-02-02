@@ -6,4 +6,3 @@
 void init_swf_text();
 
 #endif
-

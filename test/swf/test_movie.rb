@@ -1,7 +1,5 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', "helper"))
 
-require 'tempfile'
-
 module SWF
   class TestMovie < Ketama::TestCase
     @@test_number = 0
