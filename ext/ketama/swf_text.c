@@ -11,7 +11,7 @@ static VALUE allocate(VALUE klass)
   return Data_Wrap_Struct(klass, NULL, deallocate, text);
 }
 
-static VALUE set_font(VALUE self, VALUE _font)
+static VALUE native_set_font(VALUE self, VALUE _font)
 {
   SWFText text;
   SWFFont font;
@@ -54,6 +54,14 @@ static VALUE append(VALUE self, VALUE string)
   return self;
 }
 
+static VALUE move_to(VALUE self, VALUE x, VALUE y)
+{
+  SWFText text;
+  Data_Get_Struct(self, struct SWFText_s, text);
+  SWFText_moveTo(text, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
 void init_swf_text()
 {
   VALUE ketama  = rb_define_module("Ketama");
@@ -62,7 +70,8 @@ void init_swf_text()
 
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "append", append, 1);
-  rb_define_method(klass, "font=", set_font, 1);
   rb_define_method(klass, "height=", set_height, 1);
+  rb_define_method(klass, "move_to", move_to, 2);
+  rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
 }

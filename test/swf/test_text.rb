@@ -29,5 +29,12 @@ module SWF
       assert text = Ketama::SWF::Text.new(font, "hello world")
       assert text.color = [0, 0, 0, 0xff]
     end
+
+    def test_move_to
+      assert text = Ketama::SWF::Text.new()
+      assert text.font = File.join(ASSETS, 'font01.fdb')
+      assert text.move_to(10, 10)
+      text << "hello world"
+    end
   end
 end

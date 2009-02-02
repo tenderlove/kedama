@@ -53,9 +53,10 @@ module SWF
       assert movie = Ketama::SWF::Movie.new
       assert movie.background = [0, 0, 0]
       assert text = Ketama::SWF::Text.new()
+      text.move_to(0, 50)
 
-      text.font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
-      text.color = [0, 0, 0, 0xff]
+      text.font = File.join(ASSETS, 'font01.fdb')
+      text.color = [0, 0xff, 0, 0xff]
       text.height = 20
       text << 'abc'
 
