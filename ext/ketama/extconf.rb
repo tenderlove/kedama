@@ -30,7 +30,7 @@ unless [nil, nil] == ming_dirs
   LIB_DIRS.unshift ming_dirs[1]
 end
 
-unless find_header('libming.h', *HEADER_DIRS)
+unless find_header('ming.h', *HEADER_DIRS)
   abort "need libming"
 end
 
