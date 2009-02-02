@@ -4,6 +4,7 @@ module Ketama
       def initialize font = nil, text = nil
         return unless font && text
 
+        font = Font.open(font) if font.is_a?(String)
         self.font = font
         self.<<(text)
       end
