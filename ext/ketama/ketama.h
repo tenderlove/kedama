@@ -9,5 +9,6 @@
 
 #include <swf_movie.h>
 #include <swf_text.h>
+#include <swf_font.h>
 
 #endif

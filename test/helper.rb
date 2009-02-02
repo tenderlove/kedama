@@ -12,5 +12,7 @@ module Ketama
     unless RUBY_VERSION >= '1.9'
       undef :default_test
     end
+
+    ASSETS = File.expand_path(File.join(File.dirname(__FILE__), 'assets'))
   end
 end
