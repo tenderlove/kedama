@@ -43,6 +43,26 @@ module SWF
       movie.save File.join(Dir::tmpdir, 'test02.swf')
     end
 
+    def test_with_ttf
+      assert movie = Ketama::SWF::Movie.new
+      assert movie.background = [0, 0, 0]
+      assert text = Ketama::SWF::Text.new()
+
+      text.font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
+      text.color = [0, 0, 0, 0xff]
+      text.height = 20
+      text << 'abc'
+
+      text.font = Ketama::SWF::Font.open(File.join(ASSETS, 'test.ttf'))
+      text.color = [0xff, 0, 0, 0xff]
+      text.height = 40
+      text << 'def'
+
+      movie << text
+      assert movie.advance
+      movie.save File.join(Dir::tmpdir, 'test03.swf')
+    end
+
     def test_save
       assert movie = Ketama::SWF::Movie.new
       assert text = Ketama::SWF::Text.new(

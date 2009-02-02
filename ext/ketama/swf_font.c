@@ -8,6 +8,7 @@ static void deallocate(SWFFont font)
 static VALUE font_open(VALUE klass, VALUE filename)
 {
   SWFFont font = newSWFFont_fromFile(StringValuePtr(filename));
+  if(font == NULL) rb_raise(rb_eRuntimeError, "could not read file");
   return Data_Wrap_Struct(klass, NULL, deallocate, font);
 }
 
