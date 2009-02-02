@@ -5,5 +5,9 @@ module SWF
     def test_new
       Ketama::SWF::Text.new
     end
+
+    def test_new_with_text
+      Ketama::SWF::Text.new("hello world")
+    end
   end
 end
