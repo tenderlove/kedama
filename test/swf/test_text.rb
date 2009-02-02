@@ -36,5 +36,11 @@ module SWF
       assert text.move_to(10, 10)
       text << "hello world"
     end
+
+    def test_set_spacing
+      assert text = Ketama::SWF::Text.new()
+      assert text.font = File.join(ASSETS, 'font01.fdb')
+      assert text.spacing = 10
+    end
   end
 end

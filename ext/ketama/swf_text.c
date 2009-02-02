@@ -31,6 +31,15 @@ static VALUE set_height(VALUE self, VALUE height)
   return height;
 }
 
+static VALUE set_spacing(VALUE self, VALUE spacing)
+{
+  SWFText text;
+  Data_Get_Struct(self, struct SWFText_s, text);
+
+  SWFText_setSpacing(text, NUM2DBL(spacing));
+  return spacing;
+}
+
 static VALUE native_set_color(VALUE self, VALUE _r, VALUE _g, VALUE _b, VALUE _a)
 {
   SWFText text;
@@ -71,6 +80,7 @@ void init_swf_text()
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "append", append, 1);
   rb_define_method(klass, "height=", set_height, 1);
+  rb_define_method(klass, "spacing=", set_spacing, 1);
   rb_define_method(klass, "move_to", move_to, 2);
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
