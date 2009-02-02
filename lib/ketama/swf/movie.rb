@@ -4,6 +4,10 @@ module Ketama
       def << thing
         add_thing thing
       end
+
+      def background= colors
+        native_set_background(*colors)
+      end
     end
   end
 end

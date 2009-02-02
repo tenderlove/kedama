@@ -29,6 +29,20 @@ module SWF
       assert movie.advance
     end
 
+    def test_background
+      assert movie = Ketama::SWF::Movie.new
+      assert movie.background = [0, 0, 0]
+      assert text = Ketama::SWF::Text.new(
+        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+        "abc"
+      )
+      text.height = 20
+      text.color = [0, 0, 0, 0xff]
+      movie << text
+      assert movie.advance
+      movie.save File.join(Dir::tmpdir, 'test02.swf')
+    end
+
     def test_save
       assert movie = Ketama::SWF::Movie.new
       assert text = Ketama::SWF::Text.new(
@@ -36,7 +50,7 @@ module SWF
         "abc"
       )
       text.height = 20
-      text.color = [255, 255, 255, 0xff]
+      text.color = [0xff, 0, 0, 0xff]
       movie << text
       assert movie.advance
       movie.save File.join(Dir::tmpdir, 'test01.swf')

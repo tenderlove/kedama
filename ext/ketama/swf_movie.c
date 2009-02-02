@@ -31,6 +31,20 @@ static VALUE advance(VALUE self)
   return self;
 }
 
+static VALUE native_set_background(VALUE self, VALUE _r, VALUE _g, VALUE _b)
+{
+  SWFMovie movie;
+  Data_Get_Struct(self, struct SWFMovie_s, movie);
+
+  SWFMovie_setBackground(
+      movie,
+      NUM2INT(_r),
+      NUM2INT(_g),
+      NUM2INT(_b)
+  );
+  return self;
+}
+
 static VALUE save(VALUE self, VALUE filename)
 {
   SWFMovie movie;
@@ -50,4 +64,5 @@ void init_swf_movie()
   rb_define_method(klass, "advance", advance, 0);
   rb_define_method(klass, "save", save, 1);
   rb_define_private_method(klass, "add_thing", add_thing, 1);
+  rb_define_private_method(klass, "native_set_background", native_set_background, 3);
 }
