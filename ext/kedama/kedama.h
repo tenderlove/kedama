@@ -1,5 +1,5 @@
-#ifndef KETAMA_KETAMA
-#define KETAMA_KETAMA
+#ifndef KEDAMA_KEDAMA
+#define KEDAMA_KEDAMA
 
 #include <stdio.h>
 #include <stdlib.h>

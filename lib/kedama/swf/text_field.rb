@@ -1,4 +1,4 @@
-module Ketama
+module Kedama
   module SWF
     class TextField
       def font= path

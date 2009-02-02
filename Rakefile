@@ -2,30 +2,30 @@
 
 require 'rubygems'
 require 'hoe'
-require './lib/ketama/version.rb'
+require './lib/kedama/version.rb'
 
 kind = Config::CONFIG['DLEXT']
 
-HOE = Hoe.new('ketama', Ketama::VERSION) do |p|
-  p.rubyforge_name = 'ketama'
+HOE = Hoe.new('kedama', Kedama::VERSION) do |p|
+  p.rubyforge_name = 'kedama'
   p.developer('Aaron Patterson', 'aaronp@rubyforge.org')
   p.clean_globs = [
-    'ext/ketama/Makefile',
-    'ext/ketama/*.{o,so,bundle,a,log,dll}',
-    'ext/ketama/conftest.dSYM',
+    'ext/kedama/Makefile',
+    'ext/kedama/*.{o,so,bundle,a,log,dll}',
+    'ext/kedama/conftest.dSYM',
   ]
-  p.spec_extras = { :extensions => ["ext/ketama/extconf.rb"] }
+  p.spec_extras = { :extensions => ["ext/kedama/extconf.rb"] }
 end
 
-EXT = "ext/ketama/ketama.#{kind}"
-task 'ext/ketama/Makefile' do
-  Dir.chdir('ext/ketama') do
+EXT = "ext/kedama/kedama.#{kind}"
+task 'ext/kedama/Makefile' do
+  Dir.chdir('ext/kedama') do
     ruby "extconf.rb"
   end
 end
 
-task EXT => 'ext/ketama/Makefile' do
-  Dir.chdir('ext/ketama') do
+task EXT => 'ext/kedama/Makefile' do
+  Dir.chdir('ext/kedama') do
     sh 'make'
   end
 end

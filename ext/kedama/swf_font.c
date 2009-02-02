@@ -14,8 +14,8 @@ static VALUE font_open(VALUE klass, VALUE filename)
 
 void init_swf_font()
 {
-  VALUE ketama  = rb_define_module("Ketama");
-  VALUE swf     = rb_define_module_under(ketama, "SWF");
+  VALUE kedama  = rb_define_module("Kedama");
+  VALUE swf     = rb_define_module_under(kedama, "SWF");
   VALUE klass   = rb_define_class_under(swf, "Font", rb_cObject);
 
   rb_define_singleton_method(klass, "open", font_open, 1);

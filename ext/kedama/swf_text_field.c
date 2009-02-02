@@ -24,8 +24,8 @@ static VALUE native_set_font(VALUE self, VALUE _font)
 
 void init_swf_text_field()
 {
-  VALUE ketama  = rb_define_module("Ketama");
-  VALUE swf     = rb_define_module_under(ketama, "SWF");
+  VALUE kedama  = rb_define_module("Kedama");
+  VALUE swf     = rb_define_module_under(kedama, "SWF");
   VALUE klass   = rb_define_class_under(swf, "TextField", rb_cObject);
 
   rb_define_alloc_func(klass, allocate);

@@ -38,4 +38,4 @@ unless find_library('ming', 'newSWFMovie', *LIB_DIRS)
   abort "need libming"
 end
 
-create_makefile('ketama/ketama')
+create_makefile('kedama/kedama')

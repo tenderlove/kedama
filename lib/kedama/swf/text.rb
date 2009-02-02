@@ -1,4 +1,4 @@
-module Ketama
+module Kedama
   module SWF
     class Text
       def initialize font = nil, text = nil

@@ -1,4 +1,4 @@
-= ketama
+= kedama
 
 * FIX (url)
 

@@ -1,7 +1,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', "helper"))
 
 module SWF
-  class TestMovie < Ketama::TestCase
+  class TestMovie < Kedama::TestCase
     @@test_number = 0
 
     def setup
@@ -9,14 +9,14 @@ module SWF
     end
 
     def test_new
-      assert Ketama::SWF::Movie.new
+      assert Kedama::SWF::Movie.new
     end
 
     def test_add_text
-      assert movie = Ketama::SWF::Movie.new
+      assert movie = Kedama::SWF::Movie.new
 
-      assert text = Ketama::SWF::Text.new(
-        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+      assert text = Kedama::SWF::Text.new(
+        Kedama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
         "hello world"
       )
 
@@ -24,9 +24,9 @@ module SWF
     end
 
     def test_advance
-      assert movie = Ketama::SWF::Movie.new
-      assert text = Ketama::SWF::Text.new(
-        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+      assert movie = Kedama::SWF::Movie.new
+      assert text = Kedama::SWF::Text.new(
+        Kedama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
         "hello world"
       )
       movie << text
@@ -34,10 +34,10 @@ module SWF
     end
 
     def test_background
-      assert movie = Ketama::SWF::Movie.new
+      assert movie = Kedama::SWF::Movie.new
       assert movie.background = [0, 0, 0]
-      assert text = Ketama::SWF::Text.new(
-        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+      assert text = Kedama::SWF::Text.new(
+        Kedama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
         "abc"
       )
       text.height = 20
@@ -48,9 +48,9 @@ module SWF
     end
 
     def test_with_ttf
-      assert movie = Ketama::SWF::Movie.new
+      assert movie = Kedama::SWF::Movie.new
       assert movie.background = [0, 0, 0]
-      assert text = Ketama::SWF::Text.new()
+      assert text = Kedama::SWF::Text.new()
       text.move_to(0, 50)
 
       text.font = File.join(ASSETS, 'font01.fdb')
@@ -58,7 +58,7 @@ module SWF
       text.height = 20
       text << 'abc'
 
-      text.font = Ketama::SWF::Font.open(File.join(ASSETS, 'test.ttf'))
+      text.font = Kedama::SWF::Font.open(File.join(ASSETS, 'test.ttf'))
       text.color = [0xff, 0, 0, 0xff]
       text.height = 40
       text << 'def'
@@ -69,9 +69,9 @@ module SWF
     end
 
     def test_save
-      assert movie = Ketama::SWF::Movie.new
-      assert text = Ketama::SWF::Text.new(
-        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+      assert movie = Kedama::SWF::Movie.new
+      assert text = Kedama::SWF::Text.new(
+        Kedama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
         "abc"
       )
       text.height = 20
@@ -82,12 +82,12 @@ module SWF
     end
 
     def test_set_dimension
-      assert movie = Ketama::SWF::Movie.new
+      assert movie = Kedama::SWF::Movie.new
 
       movie.dimension = [300, 250]
 
-      assert text = Ketama::SWF::Text.new(
-        Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
+      assert text = Kedama::SWF::Text.new(
+        Kedama::SWF::Font.open(File.join(ASSETS, 'font01.fdb')),
         "abc"
       )
       text.height = 20

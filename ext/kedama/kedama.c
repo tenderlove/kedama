@@ -1,6 +1,6 @@
-#include <ketama.h>
+#include <kedama.h>
 
-void Init_ketama()
+void Init_kedama()
 {
   init_swf_movie();
   init_swf_text();

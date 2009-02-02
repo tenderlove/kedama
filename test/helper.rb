@@ -6,9 +6,9 @@ require 'tempfile'
   $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), path)))
 end
 
-require 'ketama'
+require 'kedama'
 
-module Ketama
+module Kedama
   class TestCase < Test::Unit::TestCase
     unless RUBY_VERSION >= '1.9'
       undef :default_test

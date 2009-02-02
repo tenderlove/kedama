@@ -82,8 +82,8 @@ static VALUE width_of(VALUE self, VALUE string)
 
 void init_swf_text()
 {
-  VALUE ketama  = rb_define_module("Ketama");
-  VALUE swf     = rb_define_module_under(ketama, "SWF");
+  VALUE kedama  = rb_define_module("Kedama");
+  VALUE swf     = rb_define_module_under(kedama, "SWF");
   VALUE klass   = rb_define_class_under(swf, "Text", rb_cObject);
 
   rb_define_alloc_func(klass, allocate);
