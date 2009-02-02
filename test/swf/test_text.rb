@@ -12,15 +12,15 @@ module SWF
     end
 
     def test_set_height
-      font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
-      text = Ketama::SWF::Text.new(font, "hello world")
-      text.height = 20
+      assert font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
+      assert text = Ketama::SWF::Text.new(font, "hello world")
+      assert text.height = 20
     end
 
     def test_set_color
-      font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
-      text = Ketama::SWF::Text.new(font, "hello world")
-      text.color = [0, 0, 0, 0xff]
+      assert font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
+      assert text = Ketama::SWF::Text.new(font, "hello world")
+      assert text.color = [0, 0, 0, 0xff]
     end
   end
 end
