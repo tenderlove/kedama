@@ -31,6 +31,21 @@ static VALUE set_height(VALUE self, VALUE height)
   return height;
 }
 
+static VALUE native_set_color(VALUE self, VALUE _r, VALUE _g, VALUE _b, VALUE _a)
+{
+  SWFText text;
+  Data_Get_Struct(self, struct SWFText_s, text);
+
+  SWFText_setColor(
+      text,
+      NUM2INT(_r),
+      NUM2INT(_g),
+      NUM2INT(_b),
+      NUM2INT(_a)
+  );
+  return self;
+}
+
 static VALUE append(VALUE self, VALUE string)
 {
   SWFText text;
@@ -49,4 +64,5 @@ void init_swf_text()
   rb_define_method(klass, "append", append, 1);
   rb_define_method(klass, "font=", set_font, 1);
   rb_define_method(klass, "height=", set_height, 1);
+  rb_define_private_method(klass, "native_set_color", native_set_color, 4);
 }

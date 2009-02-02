@@ -11,6 +11,10 @@ module Ketama
       def << text
         append(text)
       end
+
+      def color= value
+        native_set_color(*value)
+      end
     end
   end
 end

@@ -16,5 +16,11 @@ module SWF
       text = Ketama::SWF::Text.new(font, "hello world")
       text.height = 20
     end
+
+    def test_set_color
+      font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
+      text = Ketama::SWF::Text.new(font, "hello world")
+      text.color = [0, 0, 0, 0xff]
+    end
   end
 end
