@@ -11,6 +11,17 @@ static VALUE allocate(VALUE klass)
   return Data_Wrap_Struct(klass, NULL, deallocate, text);
 }
 
+static VALUE set_font(VALUE self, VALUE _font)
+{
+  SWFText text;
+  SWFFont font;
+  Data_Get_Struct(self, struct SWFText_s, text);
+  Data_Get_Struct(_font, struct SWFFont_s, font);
+
+  SWFText_setFont(text, font);
+  return _font;
+}
+
 static VALUE append(VALUE self, VALUE string)
 {
   SWFText text;
@@ -27,4 +38,5 @@ void init_swf_text()
 
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "append", append, 1);
+  rb_define_method(klass, "font=", set_font, 1);
 }

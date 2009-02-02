@@ -7,8 +7,8 @@ module SWF
     end
 
     def test_new_with_text
-      font = Ketama::SWF::Font.from_file()
-      Ketama::SWF::Text.new("hello world")
+      font = Ketama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
+      text = Ketama::SWF::Text.new(font, "hello world")
     end
   end
 end

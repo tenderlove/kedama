@@ -1,8 +1,11 @@
 module Ketama
   module SWF
     class Text
-      def initialize text = nil
-        self.<<(text) if text
+      def initialize font = nil, text = nil
+        return unless font && text
+
+        self.font = font
+        self.<<(text)
       end
 
       def << text
