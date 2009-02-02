@@ -8,5 +8,6 @@
 #include <ruby.h>
 
 #include <swf_movie.h>
+#include <swf_text.h>
 
 #endif
