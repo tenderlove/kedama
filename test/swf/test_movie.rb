@@ -44,7 +44,6 @@ module SWF
       text.color = [0, 0, 0, 0xff]
       movie << text
       assert movie.advance
-      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
     end
 
     def test_with_ttf
@@ -65,7 +64,6 @@ module SWF
 
       movie << text
       assert movie.advance
-      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
     end
 
     def test_save
@@ -94,7 +92,6 @@ module SWF
       text.color = [0xff, 0, 0, 0xff]
       movie << text
       assert movie.advance
-      movie.save File.join(Dir::tmpdir, "test_#{@@test_number}.swf")
     end
   end
 end
