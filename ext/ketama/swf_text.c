@@ -22,6 +22,15 @@ static VALUE set_font(VALUE self, VALUE _font)
   return _font;
 }
 
+static VALUE set_height(VALUE self, VALUE height)
+{
+  SWFText text;
+  Data_Get_Struct(self, struct SWFText_s, text);
+
+  SWFText_setHeight(text, NUM2DBL(height));
+  return height;
+}
+
 static VALUE append(VALUE self, VALUE string)
 {
   SWFText text;
@@ -39,4 +48,5 @@ void init_swf_text()
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "append", append, 1);
   rb_define_method(klass, "font=", set_font, 1);
+  rb_define_method(klass, "height=", set_height, 1);
 }
