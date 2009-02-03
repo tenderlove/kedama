@@ -40,6 +40,18 @@ module Kedama
       def bounds= new_bounds
         bounds(*new_bounds)
       end
+
+      # Alignment types
+      ALIGN_LEFT    = 0
+      ALIGN_RIGHT   = 1
+      ALIGN_CENTER  = 3
+      ALIGN_JUSTIFY = 4
+
+      def alignment= align
+        val = self.class.const_get(align.to_s.upcase.to_sym) rescue align.to_i
+        native_set_alignment(val)
+        align
+      end
     end
   end
 end

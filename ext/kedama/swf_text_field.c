@@ -46,6 +46,15 @@ static VALUE native_set_flags(VALUE self, VALUE flags)
   return flags;
 }
 
+static VALUE native_set_alignment(VALUE self, VALUE alignment)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setAlignment(tf, NUM2INT(alignment));
+  return alignment;
+}
+
 static VALUE set_height(VALUE self, VALUE height)
 {
   SWFTextField tf;
@@ -155,4 +164,5 @@ void init_swf_text_field()
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
   rb_define_private_method(klass, "native_set_flags", native_set_flags, 1);
+  rb_define_private_method(klass, "native_set_alignment", native_set_alignment, 1);
 }
