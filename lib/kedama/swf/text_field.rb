@@ -10,6 +10,12 @@ module Kedama
       NOSELECT  = (1<<12)  # disabled selection
       AUTOSIZE  = (1<<14)  # resizes to textlen
 
+      def initialize font = nil, text = nil
+        self.font = font if font
+        self.<<(text) if font && text
+        yield self if block_given?
+      end
+
       def font= path
         native_set_font(path.is_a?(String) ? Font.open(path) : path)
       end

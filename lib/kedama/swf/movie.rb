@@ -16,6 +16,11 @@ module Kedama
       def dimension= dimension
         native_set_dimension(*dimension)
       end
+
+      def frame &block
+        block.call(self)
+        self.advance
+      end
     end
   end
 end

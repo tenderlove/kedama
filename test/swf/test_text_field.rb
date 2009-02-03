@@ -38,5 +38,31 @@ module SWF
       assert tf = Kedama::SWF::TextField.new
       assert tf << "hello world"
     end
+
+    def test_new_with_args
+      assert tf = Kedama::SWF::TextField.new(
+        File.join(ASSETS, 'font01.fdb'), 'hello'
+      )
+    end
+
+    def test_block
+      called = false
+      Kedama::SWF::TextField.new do |tf|
+        tf.font = File.join(ASSETS, 'font01.fdb')
+        called = true
+      end
+      assert called
+    end
+
+    def test_add_to_movie
+      assert movie = Kedama::SWF::Movie.new
+      movie.frame do |frame|
+        frame << Kedama::SWF::TextField.new do |text|
+          text.font = File.join(ASSETS, 'font01.fdb')
+          text.color = [0, 0, 0, 0xff]
+          text << 'balls'
+        end
+      end
+    end
   end
 end

@@ -2,10 +2,9 @@ module Kedama
   module SWF
     class Text
       def initialize font = nil, text = nil
-        return unless font && text
-
-        self.font = font
-        self.<<(text)
+        self.font = font if font
+        self.<<(text) if font && text
+        yield self if block_given?
       end
 
       def << text
