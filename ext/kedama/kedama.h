@@ -11,5 +11,6 @@
 #include <swf_text.h>
 #include <swf_text_field.h>
 #include <swf_font.h>
+#include <swf_shape.h>
 
 #endif
