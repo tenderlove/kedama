@@ -63,6 +63,15 @@ static VALUE append(VALUE self, VALUE string)
   return self;
 }
 
+static VALUE bounds(VALUE self, VALUE height, VALUE width)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setBounds(tf, NUM2DBL(height), NUM2DBL(width));
+  return self;
+}
+
 void init_swf_text_field()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -72,6 +81,7 @@ void init_swf_text_field()
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "height=", set_height, 1);
   rb_define_method(klass, "append", append, 1);
+  rb_define_method(klass, "bounds", bounds, 2);
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
   rb_define_private_method(klass, "native_set_flags", native_set_flags, 1);

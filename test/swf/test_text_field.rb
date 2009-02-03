@@ -64,5 +64,11 @@ module SWF
         end
       end
     end
+
+    def test_set_bounds
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.bounds = [10, 10]
+      assert tf.bounds(10, 10)
+    end
   end
 end

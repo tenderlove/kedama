@@ -10,6 +10,8 @@ module Kedama
       NOSELECT  = (1<<12)  # disabled selection
       AUTOSIZE  = (1<<14)  # resizes to textlen
 
+      alias :<< :append
+
       def initialize font = nil, text = nil
         self.font = font if font
         self.<<(text) if font && text
@@ -33,7 +35,11 @@ module Kedama
       end
       alias :options= :options
 
-      alias :<< :append
+      ###
+      # Set the TextField bounds
+      def bounds= new_bounds
+        bounds(*new_bounds)
+      end
     end
   end
 end
