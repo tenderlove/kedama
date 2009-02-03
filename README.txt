@@ -16,17 +16,20 @@ FIX (describe your package)
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* ming (the ming C library)
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo port install ming
+* gem install kedama
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIX
+Copyright (c) 2009
+
+* {Aaron Patterson}[http://tenderlovemaking.com]
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
