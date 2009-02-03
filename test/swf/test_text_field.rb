@@ -70,5 +70,10 @@ module SWF
       assert tf.bounds = [10, 10]
       assert tf.bounds(10, 10)
     end
+
+    def test_set_variable_name
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.variable_name = 'hello'
+    end
   end
 end
