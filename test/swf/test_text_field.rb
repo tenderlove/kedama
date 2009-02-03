@@ -95,5 +95,10 @@ module SWF
       assert tf.alignment = :align_left
       assert tf.alignment = 1
     end
+
+    def test_set_length
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.length = 100
+    end
   end
 end

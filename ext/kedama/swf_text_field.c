@@ -144,6 +144,15 @@ static VALUE set_padding(VALUE self, VALUE padding)
   return self;
 }
 
+static VALUE set_length(VALUE self, VALUE length)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setLength(tf, NUM2INT(length));
+  return self;
+}
+
 void init_swf_text_field()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -161,6 +170,7 @@ void init_swf_text_field()
   rb_define_method(klass, "indentation=", set_indentation, 1);
   rb_define_method(klass, "line_spacing=", set_line_spacing, 1);
   rb_define_method(klass, "padding=", set_padding, 1);
+  rb_define_method(klass, "length=", set_length, 1);
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
   rb_define_private_method(klass, "native_set_flags", native_set_flags, 1);
