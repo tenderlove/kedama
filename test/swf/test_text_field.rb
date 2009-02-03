@@ -18,5 +18,15 @@ module SWF
       assert tf.font = File.join(ASSETS, 'font01.fdb')
       assert tf.font = Kedama::SWF::Font.open(File.join(ASSETS, 'font01.fdb'))
     end
+
+    def test_set_color
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.color = [0, 0, 0, 0xff]
+    end
+
+    def test_set_height
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.height = 20
+    end
   end
 end
