@@ -28,5 +28,10 @@ module SWF
       assert tf = Kedama::SWF::TextField.new
       assert tf.height = 20
     end
+
+    def test_set_options
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.options(:noedit => true)
+    end
   end
 end
