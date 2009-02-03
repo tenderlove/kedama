@@ -5,5 +5,19 @@ module SWF
     def test_new
       assert Kedama::SWF::Shape.new
     end
+
+    def test_version
+      shape = Kedama::SWF::Shape.new
+      assert shape.version = 3
+    end
+
+    def test_add_to_movie
+      assert movie = Kedama::SWF::Movie.new
+      movie.frame do |frame|
+        shape = Kedama::SWF::Shape.new
+        shape.version = 4
+        frame << shape
+      end
+    end
   end
 end

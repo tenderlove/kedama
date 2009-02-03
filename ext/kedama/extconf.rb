@@ -8,7 +8,7 @@ INCLUDEDIR = Config::CONFIG['includedir']
 use_macports = !(defined?(RUBY_ENGINE) && RUBY_ENGINE != 'ruby')
 
 $LIBPATH << "/opt/local/lib" if use_macports
-$CFLAGS << " -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline"
+$CFLAGS << " -O3 -Wall -Wcast-qual -Wwrite-strings -Wmissing-noreturn -Winline"
 
 HEADER_DIRS = [
   INCLUDEDIR,
