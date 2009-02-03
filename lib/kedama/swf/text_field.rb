@@ -26,6 +26,8 @@ module Kedama
         native_set_flags(flags)
       end
       alias :options= :options
+
+      alias :<< :append
     end
   end
 end

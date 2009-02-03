@@ -33,5 +33,10 @@ module SWF
       assert tf = Kedama::SWF::TextField.new
       assert tf.options(:noedit => true)
     end
+
+    def test_append
+      assert tf = Kedama::SWF::TextField.new
+      assert tf << "hello world"
+    end
   end
 end
