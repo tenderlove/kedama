@@ -75,5 +75,10 @@ module SWF
       assert tf = Kedama::SWF::TextField.new
       assert tf.variable_name = 'hello'
     end
+
+    def test_set_field_height
+      assert tf = Kedama::SWF::TextField.new
+      assert tf.field_height = 100.0
+    end
   end
 end

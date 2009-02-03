@@ -81,6 +81,15 @@ static VALUE set_variable_name(VALUE self, VALUE name)
   return self;
 }
 
+static VALUE set_field_height(VALUE self, VALUE height)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setFieldHeight(tf, NUM2DBL(height));
+  return self;
+}
+
 void init_swf_text_field()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -92,6 +101,7 @@ void init_swf_text_field()
   rb_define_method(klass, "append", append, 1);
   rb_define_method(klass, "bounds", bounds, 2);
   rb_define_method(klass, "variable_name=", set_variable_name, 1);
+  rb_define_method(klass, "field_height=", set_field_height, 1);
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
   rb_define_private_method(klass, "native_set_flags", native_set_flags, 1);
