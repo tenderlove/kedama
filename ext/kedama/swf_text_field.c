@@ -90,6 +90,51 @@ static VALUE set_field_height(VALUE self, VALUE height)
   return self;
 }
 
+static VALUE set_left_margin(VALUE self, VALUE margin)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setLeftMargin(tf, NUM2DBL(margin));
+  return self;
+}
+
+static VALUE set_right_margin(VALUE self, VALUE margin)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setRightMargin(tf, NUM2DBL(margin));
+  return self;
+}
+
+static VALUE set_indentation(VALUE self, VALUE indentation)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setIndentation(tf, NUM2DBL(indentation));
+  return self;
+}
+
+static VALUE set_line_spacing(VALUE self, VALUE spacing)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setLineSpacing(tf, NUM2DBL(spacing));
+  return self;
+}
+
+static VALUE set_padding(VALUE self, VALUE padding)
+{
+  SWFTextField tf;
+  Data_Get_Struct(self, struct SWFTextField_s, tf);
+
+  SWFTextField_setPadding(tf, NUM2DBL(padding));
+  return self;
+}
+
 void init_swf_text_field()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -102,6 +147,11 @@ void init_swf_text_field()
   rb_define_method(klass, "bounds", bounds, 2);
   rb_define_method(klass, "variable_name=", set_variable_name, 1);
   rb_define_method(klass, "field_height=", set_field_height, 1);
+  rb_define_method(klass, "left_margin=", set_left_margin, 1);
+  rb_define_method(klass, "right_margin=", set_right_margin, 1);
+  rb_define_method(klass, "indentation=", set_indentation, 1);
+  rb_define_method(klass, "line_spacing=", set_line_spacing, 1);
+  rb_define_method(klass, "padding=", set_padding, 1);
   rb_define_private_method(klass, "native_set_font", native_set_font, 1);
   rb_define_private_method(klass, "native_set_color", native_set_color, 4);
   rb_define_private_method(klass, "native_set_flags", native_set_flags, 1);
