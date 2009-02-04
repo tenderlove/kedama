@@ -94,5 +94,121 @@ module SWF
         }
       }#.save('test02.swf')
     end
+
+    def test_add_entry_add_to_movie_up_to_zero_point_nine
+      Movie.new { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.add_entry(0,   0,    0,  0,  255)
+                gradient.add_entry(0.2, 0,    10, 0,  255)
+                gradient.add_entry(0.3, 110,  0,  10, 255)
+                gradient.add_entry(0.4, 20,   0,  0,  255)
+                gradient.add_entry(0.5, 0,    20, 0,  255)
+                gradient.add_entry(0.6, 0,    0,  20, 255)
+                gradient.add_entry(0.7, 30,   0,  0,  255)
+
+                gradient.add_entry(0.8, 0,    30, 0,  255)
+                gradient.add_entry(0.9, 0,    0,  30, 255)
+            }, 0x10)
+            shape.line = [1, 0, 0, 0, 255]
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }
+    end
+
+    def test_add_entry_add_to_movie_up_to_zero_point_nine_use_version
+      Movie.new { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            shape.version = 4
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.add_entry(0,   0,    0,  0,  255)
+                gradient.add_entry(0.2, 0,    10, 0,  255)
+                gradient.add_entry(0.3, 110,  0,  10, 255)
+                gradient.add_entry(0.4, 20,   0,  0,  255)
+                gradient.add_entry(0.5, 0,    20, 0,  255)
+                gradient.add_entry(0.6, 0,    0,  20, 255)
+                gradient.add_entry(0.7, 30,   0,  0,  255)
+
+                gradient.add_entry(0.8, 0,    30, 0,  255)
+                gradient.add_entry(0.9, 0,    0,  30, 255)
+            }, 0x10)
+            shape.line = [1, 0, 0, 0, 255]
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }
+    end
+
+    def test_add_entry_add_to_movie_set_spread_mode_and_interp_mode
+      Movie.new { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            shape.version = 4
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.spread_mode = :repeat
+                gradient.interpolation_mode = :linear
+                gradient.add_entry(0,   0,    0,  0,  255)
+                gradient.add_entry(0.2, 0,    10, 0,  255)
+                gradient.add_entry(0.3, 110,  0,  10, 255)
+                gradient.add_entry(0.4, 20,   0,  0,  255)
+                gradient.add_entry(0.5, 0,    20, 0,  255)
+                gradient.add_entry(0.6, 0,    0,  20, 255)
+                gradient.add_entry(0.7, 30,   0,  0,  255)
+
+                gradient.add_entry(0.8, 0,    30, 0,  255)
+                gradient.add_entry(0.9, 0,    0,  30, 255)
+            }, 0x10)
+            shape.line = [1, 0, 0, 0, 255]
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }
+    end
+
+    def test_add_entry_add_to_movie_set_focal_point
+      Movie.new { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            shape.version = 4
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.spread_mode = :repeat
+                gradient.interpolation_mode = :linear
+                gradient.focal_point = 0.2
+                gradient.add_entry(0,   0,    0,  0,  255)
+                gradient.add_entry(0.2, 0,    10, 0,  255)
+                gradient.add_entry(0.3, 110,  0,  10, 255)
+                gradient.add_entry(0.4, 20,   0,  0,  255)
+                gradient.add_entry(0.5, 0,    20, 0,  255)
+                gradient.add_entry(0.6, 0,    0,  20, 255)
+                gradient.add_entry(0.7, 30,   0,  0,  255)
+
+                gradient.add_entry(0.8, 0,    30, 0,  255)
+                gradient.add_entry(0.9, 0,    0,  30, 255)
+            }, 0x10)
+            shape.line = [1, 0, 0, 0, 255]
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }
+    end
   end
 end
