@@ -38,6 +38,15 @@ static VALUE native_interpolation_mode(VALUE self, VALUE mode)
   return self;
 }
 
+static VALUE set_focal_point(VALUE self, VALUE point)
+{
+  SWFGradient gradient;
+  Data_Get_Struct(self, struct SWFGradient_s, gradient);
+
+  SWFGradient_setFocalPoint(gradient, NUM2DBL(point));
+  return self;
+}
+
 VALUE cKedamaSwfGradient;
 void init_swf_gradient()
 {
@@ -48,7 +57,8 @@ void init_swf_gradient()
   cKedamaSwfGradient = klass;
 
   rb_define_alloc_func(klass, allocate);
-  rb_define_method(klass, "native_add_entry", native_add_entry, 5);
-  rb_define_method(klass, "native_spread_mode", native_spread_mode, 1);
-  rb_define_method(klass, "native_interpolation_mode", native_interpolation_mode, 1);
+  rb_define_method(klass, "focal_point=", set_focal_point, 1);
+  rb_define_private_method(klass, "native_add_entry", native_add_entry, 5);
+  rb_define_private_method(klass, "native_spread_mode", native_spread_mode, 1);
+  rb_define_private_method(klass, "native_interpolation_mode", native_interpolation_mode, 1);
 }

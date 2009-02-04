@@ -31,5 +31,10 @@ module SWF
       assert gradient.interpolation_mode = 0
       assert gradient.interpolation_mode = Kedama::SWF::Gradient::LINEAR
     end
+
+    def test_focal_point=
+      assert gradient = Kedama::SWF::Gradient.new
+      assert gradient.focal_point = 100.1
+    end
   end
 end
