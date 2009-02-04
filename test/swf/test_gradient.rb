@@ -8,14 +8,21 @@ module SWF
 
     def test_entry
       assert gradient = Kedama::SWF::Gradient.new
-      gradient.add_entry(
+      assert gradient.add_entry(
         :ratio  => 1,
         :r      => 255,
         :g      => 255,
         :b      => 255,
         :a      => 255
       )
-      gradient.add_entry(1, 255, 255, 255, 255)
+      assert gradient.add_entry(1, 255, 255, 255, 255)
+    end
+
+    def test_spread_mode=
+      assert gradient = Kedama::SWF::Gradient.new
+      assert gradient.spread_mode = :pad
+      assert gradient.spread_mode = 0
+      assert gradient.spread_mode = Kedama::SWF::Gradient::REFLECT
     end
   end
 end

@@ -15,6 +15,17 @@ module Kedama
           } : args
         ))
       end
+
+      # Spread modes
+      PAD     = 0
+      REFLECT = 1
+      REPEAT  = 2
+
+      def spread_mode= mode
+        mode = self.class.const_get(mode.to_s.upcase.to_sym) rescue mode
+
+        native_spread_mode(mode)
+      end
     end
   end
 end

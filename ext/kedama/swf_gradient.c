@@ -20,6 +20,15 @@ static VALUE native_add_entry(VALUE self, VALUE ratio, VALUE r, VALUE g, VALUE b
   return self;
 }
 
+static VALUE native_spread_mode(VALUE self, VALUE mode)
+{
+  SWFGradient gradient;
+  Data_Get_Struct(self, struct SWFGradient_s, gradient);
+
+  SWFGradient_setSpreadMode(gradient, NUM2INT(mode));
+  return self;
+}
+
 VALUE cKedamaSwfGradient;
 void init_swf_gradient()
 {
@@ -31,4 +40,5 @@ void init_swf_gradient()
 
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "native_add_entry", native_add_entry, 5);
+  rb_define_method(klass, "native_spread_mode", native_spread_mode, 1);
 }
