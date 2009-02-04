@@ -210,5 +210,23 @@ module SWF
         }
       }
     end
+
+    def test_gradient_fill_circle
+      Movie.new { |movie|
+        movie.background = [0, 0, 0]
+        movie.dimension = [500, 450]
+        movie.frame { |frame|
+          di = frame << Shape.new { |shape|
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.add_entry(0, 255, 255, 255, 255)
+                gradient.add_entry(1.0, 255, 255, 255, 0)
+            }, FillStyle::RADIAL_GRADIENT)
+            shape.draw_circle(55)
+          }
+          di.move_to(100, 100)
+        }
+      }.save('test02.swf')
+    end
   end
 end

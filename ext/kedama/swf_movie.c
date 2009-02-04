@@ -18,8 +18,9 @@ static VALUE add_thing(VALUE self, VALUE thing)
   Data_Get_Struct(self, struct SWFMovie_s, movie);
   Data_Get_Struct(thing, struct SWFBlock_s, block);
 
-  SWFMovie_add(movie, block);
-  return self;
+  SWFDisplayItem di = SWFMovie_add(movie, block);
+
+  return Data_Wrap_Struct(cKedamaSwfDisplayItem, NULL, NULL, di);
 }
 
 static VALUE advance(VALUE self)

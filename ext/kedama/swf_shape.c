@@ -150,6 +150,16 @@ static VALUE draw_line_to(VALUE self, VALUE x, VALUE y)
   return self;
 }
 
+static VALUE draw_circle(VALUE self, VALUE r)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  SWFShape_drawCircle(shape, NUM2DBL(r));
+  return self;
+}
+
 void init_swf_shape()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -169,4 +179,5 @@ void init_swf_shape()
   rb_define_method(klass, "set_line", set_line, 5);
   rb_define_method(klass, "right_fill_style=", right_fill_style, 1);
   rb_define_method(klass, "draw_line_to", draw_line_to, 2);
+  rb_define_method(klass, "draw_circle", draw_circle, 1);
 }
