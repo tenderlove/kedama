@@ -35,5 +35,19 @@ module SWF
       )
       assert_equal 'Bitstream Vera Sans', font.name
     end
+
+    def test_glyph_count
+      assert font = Kedama::SWF::Font.open(
+        File.join(ASSETS, 'font01.fdb')
+      )
+      assert_equal 227, font.glyph_count
+    end
+
+    def test_string_width
+      assert font = Kedama::SWF::Font.open(
+        File.join(ASSETS, 'font01.fdb')
+      )
+      assert_in_delta 123.65, font.width_of('hello'), 0.01
+    end
   end
 end

@@ -44,6 +44,22 @@ static VALUE name(VALUE self)
   return rb_str_new2(SWFFont_getName(font));
 }
 
+static VALUE glyph_count(VALUE self)
+{
+  SWFFont font;
+  Data_Get_Struct(self, struct SWFFont_s, font);
+
+  return INT2NUM(SWFFont_getGlyphCount(font));
+}
+
+static VALUE width_of(VALUE self, VALUE string)
+{
+  SWFFont font;
+  Data_Get_Struct(self, struct SWFFont_s, font);
+
+  return rb_float_new(SWFFont_getUTF8StringWidth(font, StringValuePtr(string)));
+}
+
 void init_swf_font()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -55,4 +71,6 @@ void init_swf_font()
   rb_define_method(klass, "descent", descent, 0);
   rb_define_method(klass, "leading", leading, 0);
   rb_define_method(klass, "name", name, 0);
+  rb_define_method(klass, "glyph_count", glyph_count, 0);
+  rb_define_method(klass, "width_of", width_of, 1);
 }
