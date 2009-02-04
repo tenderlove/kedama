@@ -87,6 +87,27 @@ static VALUE pen(VALUE self)
   return list;
 }
 
+static VALUE draw_cubic_to(VALUE self,
+    VALUE bx,
+    VALUE by,
+    VALUE cx,
+    VALUE cy,
+    VALUE dx,
+    VALUE dy )
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  return INT2NUM(SWFShape_drawCubicTo(shape,
+        NUM2DBL(bx),
+        NUM2DBL(by),
+        NUM2DBL(cx),
+        NUM2DBL(cy),
+        NUM2DBL(bx),
+        NUM2DBL(by)));
+}
+
 void init_swf_shape()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -101,4 +122,5 @@ void init_swf_shape()
   rb_define_method(klass, "pen_x", pen_x, 0);
   rb_define_method(klass, "pen_y", pen_y, 0);
   rb_define_method(klass, "pen", pen, 0);
+  rb_define_method(klass, "draw_cubic_to", draw_cubic_to, 6);
 }

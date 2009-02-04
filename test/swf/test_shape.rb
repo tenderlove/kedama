@@ -39,5 +39,19 @@ module SWF
       assert_in_delta 167.0, shape.pen[0], 0.1
       assert_in_delta 69.875040, shape.pen[1], 0.03
     end
+
+    def test_draw_cubic_to
+      shape = Kedama::SWF::Shape.new
+      assert shape.move_pen_to(167.000000, 69.875040)
+      segments = shape.draw_cubic_to(
+        198.796531,
+        69.875040,
+        224.624960,
+        95.703469,
+        224.624960,
+        127.500000
+      )
+      assert_instance_of Fixnum, segments
+    end
   end
 end
