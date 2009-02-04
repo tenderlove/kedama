@@ -54,6 +54,16 @@ static VALUE move_pen_to(VALUE self, VALUE x, VALUE y)
   return self;
 }
 
+static VALUE move_pen(VALUE self, VALUE x, VALUE y)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  SWFShape_movePen(shape, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
 static VALUE pen_x(VALUE self)
 {
   SWFShape shape;
@@ -108,6 +118,21 @@ static VALUE draw_cubic_to(VALUE self,
         NUM2DBL(by)));
 }
 
+static VALUE set_line(VALUE self, VALUE w, VALUE r, VALUE g, VALUE b, VALUE a)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+  SWFShape_setLine(shape,
+        NUM2DBL(w),
+        NUM2DBL(r),
+        NUM2DBL(g),
+        NUM2DBL(b),
+        NUM2DBL(a)
+  );
+  return self;
+}
+
 void init_swf_shape()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -119,8 +144,10 @@ void init_swf_shape()
   rb_define_method(klass, "solid_fill", solid_fill, 4);
   rb_define_method(klass, "right_fill=", set_right_fill, 1);
   rb_define_method(klass, "move_pen_to", move_pen_to, 2);
+  rb_define_method(klass, "move_pen", move_pen, 2);
   rb_define_method(klass, "pen_x", pen_x, 0);
   rb_define_method(klass, "pen_y", pen_y, 0);
   rb_define_method(klass, "pen", pen, 0);
   rb_define_method(klass, "draw_cubic_to", draw_cubic_to, 6);
+  rb_define_method(klass, "set_line", set_line, 5);
 }

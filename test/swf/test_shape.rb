@@ -26,7 +26,7 @@ module SWF
       assert shape.right_fill = fill
     end
 
-    def test_move_pen
+    def test_move_pen_to
       shape = Kedama::SWF::Shape.new
       assert shape.move_pen_to(167.000000, 69.875040)
       assert_in_delta 167.0, shape.pen_x, 0.1
@@ -52,6 +52,25 @@ module SWF
         127.500000
       )
       assert_instance_of Fixnum, segments
+    end
+
+    def test_move_pen
+      shape = Kedama::SWF::Shape.new
+      assert shape.move_pen(167.000000, 69.875040)
+      assert_in_delta 167.0, shape.pen[0], 0.1
+      assert_in_delta 69.875040, shape.pen[1], 0.03
+    end
+
+    def test_line=
+      shape = Kedama::SWF::Shape.new
+      shape.line = {
+        :width  => 10,
+        :r      => 25,
+        :g      => 0,
+        :b      => 0,
+        :a      => 128
+      }
+      shape.line = [10, 25, 0, 0, 128]
     end
   end
 end
