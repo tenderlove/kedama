@@ -25,5 +25,12 @@ module SWF
       assert fill = shape.solid_fill(255, 0, 0, 255)
       assert shape.right_fill = fill
     end
+
+    def test_move_pen
+      shape = Kedama::SWF::Shape.new
+      assert shape.move_pen_to(167.000000, 69.875040)
+      assert_in_delta 167.0, shape.pen_x, 0.1
+      assert_in_delta 69.875040, shape.pen_y, 0.03
+    end
   end
 end

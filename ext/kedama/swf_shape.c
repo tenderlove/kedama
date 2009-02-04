@@ -44,6 +44,34 @@ static VALUE set_right_fill(VALUE self, VALUE _fill)
   return self;
 }
 
+static VALUE move_pen_to(VALUE self, VALUE x, VALUE y)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  SWFShape_movePenTo(shape, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
+static VALUE pen_x(VALUE self)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  return rb_float_new(SWFShape_getPenX(shape));
+}
+
+static VALUE pen_y(VALUE self)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  return rb_float_new(SWFShape_getPenY(shape));
+}
+
 void init_swf_shape()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -54,4 +82,7 @@ void init_swf_shape()
   rb_define_method(klass, "version=", set_version, 1);
   rb_define_method(klass, "solid_fill", solid_fill, 4);
   rb_define_method(klass, "right_fill=", set_right_fill, 1);
+  rb_define_method(klass, "move_pen_to", move_pen_to, 2);
+  rb_define_method(klass, "pen_x", pen_x, 0);
+  rb_define_method(klass, "pen_y", pen_y, 0);
 }
