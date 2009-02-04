@@ -228,5 +228,51 @@ module SWF
         }
       }
     end
+
+    def test_gradient_set_line_move_pen
+      Movie.new { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.add_entry(0, 255, 0, 0, 255)
+                gradient.add_entry(1, 255, 255, 255, 0)
+            }, FillStyle::LINEAR_GRADIENT)
+            shape.line = [1, 0, 0, 0, 255]
+            shape.move_pen_to(50, 50)
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }
+    end
+
+    def test_gradient_set_line_move_pen_version_8
+      Movie.new(8) { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.add_entry(0, 0, 0, 0, 255)
+                gradient.add_entry(1, 255, 255, 255, 255)
+            }, FillStyle::LINEAR_GRADIENT)
+
+            shape.right_fill_style = fill_style
+
+            Fill.new(fill_style) { |fill|
+              fill.move(50, 50)
+            }
+
+            shape.line = [1, 0, 0, 0, 255]
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }.save('test02.swf')
+    end
   end
 end

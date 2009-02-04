@@ -1,6 +1,14 @@
 module Kedama
   module SWF
     class Movie
+      class << self
+        def new version = 5, &block
+          o = with_version(5)
+          o.send(:initialize, &block)
+          o
+        end
+      end
+
       def initialize
         yield self if block_given?
       end
