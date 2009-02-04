@@ -128,6 +128,28 @@ static VALUE set_line(VALUE self, VALUE w, VALUE r, VALUE g, VALUE b, VALUE a)
   return self;
 }
 
+static VALUE right_fill_style(VALUE self, VALUE _fill_style)
+{
+  SWFShape shape;
+  SWFFillStyle fill_style;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+  Data_Get_Struct(_fill_style, struct SWFFillStyle_s, fill_style);
+
+  SWFShape_setRightFillStyle(shape, fill_style);
+  return self;
+}
+
+static VALUE draw_line_to(VALUE self, VALUE x, VALUE y)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  SWFShape_drawLine(shape, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
 void init_swf_shape()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -145,4 +167,6 @@ void init_swf_shape()
   rb_define_method(klass, "pen", pen, 0);
   rb_define_method(klass, "draw_cubic_to", draw_cubic_to, 6);
   rb_define_method(klass, "set_line", set_line, 5);
+  rb_define_method(klass, "right_fill_style=", right_fill_style, 1);
+  rb_define_method(klass, "draw_line_to", draw_line_to, 2);
 }

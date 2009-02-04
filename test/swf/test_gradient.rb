@@ -36,5 +36,31 @@ module SWF
       assert gradient = Kedama::SWF::Gradient.new
       assert gradient.focal_point = 100.1
     end
+
+    def test_add_entry_add_to_movie
+      assert movie = Kedama::SWF::Movie.new
+      assert gradient = Kedama::SWF::Gradient.new
+
+      gradient.add_entry(0, 0, 0, 0, 255)
+      gradient.add_entry(1, 255, 255, 255, 255)
+
+      assert fill = Kedama::SWF::FillStyle.from_gradient(gradient, 0x10)
+      assert shape = Kedama::SWF::Shape.new
+      shape.right_fill_style = fill
+
+      shape.line = {
+        :width => 1,
+        :r      => 0,
+        :g      => 0,
+        :b      => 0,
+        :a      => 255
+      }
+      shape.draw_line_to(100, 0)
+      shape.draw_line_to(0, 100)
+      shape.draw_line_to(-100, 0)
+      shape.draw_line_to(0, -100)
+
+      movie.frame { |frame| frame << shape }
+    end
   end
 end
