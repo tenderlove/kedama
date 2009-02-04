@@ -29,6 +29,15 @@ static VALUE native_spread_mode(VALUE self, VALUE mode)
   return self;
 }
 
+static VALUE native_interpolation_mode(VALUE self, VALUE mode)
+{
+  SWFGradient gradient;
+  Data_Get_Struct(self, struct SWFGradient_s, gradient);
+
+  SWFGradient_setInterpolationMode(gradient, NUM2INT(mode));
+  return self;
+}
+
 VALUE cKedamaSwfGradient;
 void init_swf_gradient()
 {
@@ -41,4 +50,5 @@ void init_swf_gradient()
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "native_add_entry", native_add_entry, 5);
   rb_define_method(klass, "native_spread_mode", native_spread_mode, 1);
+  rb_define_method(klass, "native_interpolation_mode", native_interpolation_mode, 1);
 }

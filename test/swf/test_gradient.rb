@@ -24,5 +24,12 @@ module SWF
       assert gradient.spread_mode = 0
       assert gradient.spread_mode = Kedama::SWF::Gradient::REFLECT
     end
+
+    def test_interpolation_mode=
+      assert gradient = Kedama::SWF::Gradient.new
+      assert gradient.interpolation_mode = :normal
+      assert gradient.interpolation_mode = 0
+      assert gradient.interpolation_mode = Kedama::SWF::Gradient::LINEAR
+    end
   end
 end

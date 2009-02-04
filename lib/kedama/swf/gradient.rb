@@ -26,6 +26,14 @@ module Kedama
 
         native_spread_mode(mode)
       end
+
+      NORMAL  = 0
+      LINEAR  = 1
+      def interpolation_mode= mode
+        mode = self.class.const_get(mode.to_s.upcase.to_sym) rescue mode
+
+        native_interpolation_mode(mode)
+      end
     end
   end
 end
