@@ -13,5 +13,6 @@
 #include <swf_font.h>
 #include <swf_fill.h>
 #include <swf_shape.h>
+#include <swf_gradient.h>
 
 #endif

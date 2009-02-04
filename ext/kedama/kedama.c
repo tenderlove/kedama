@@ -8,4 +8,5 @@ void Init_kedama()
   init_swf_font();
   init_swf_fill();
   init_swf_shape();
+  init_swf_gradient();
 }

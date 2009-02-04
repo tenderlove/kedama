@@ -1,14 +1,9 @@
 #include <swf_shape.h>
 
-static void deallocate(SWFShape shape)
-{
-  destroySWFShape(shape);
-}
-
 static VALUE allocate(VALUE klass)
 {
   SWFShape shape = newSWFShape();
-  return Data_Wrap_Struct(klass, NULL, deallocate, shape);
+  return Data_Wrap_Struct(klass, NULL, destroySWFShape, shape);
 }
 
 static VALUE set_version(VALUE self, VALUE version)
