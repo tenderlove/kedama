@@ -226,7 +226,7 @@ module SWF
           }
           di.move_to(100, 100)
         }
-      }.save('test02.swf')
+      }
     end
   end
 end
