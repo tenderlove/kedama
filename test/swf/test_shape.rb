@@ -32,5 +32,12 @@ module SWF
       assert_in_delta 167.0, shape.pen_x, 0.1
       assert_in_delta 69.875040, shape.pen_y, 0.03
     end
+
+    def test_pen
+      shape = Kedama::SWF::Shape.new
+      assert shape.move_pen_to(167.000000, 69.875040)
+      assert_in_delta 167.0, shape.pen[0], 0.1
+      assert_in_delta 69.875040, shape.pen[1], 0.03
+    end
   end
 end

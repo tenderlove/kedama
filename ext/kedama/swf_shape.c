@@ -72,6 +72,21 @@ static VALUE pen_y(VALUE self)
   return rb_float_new(SWFShape_getPenY(shape));
 }
 
+static VALUE pen(VALUE self)
+{
+  SWFShape shape;
+  double x, y;
+  VALUE list = rb_ary_new();
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
+  SWFShape_getPen(shape, &x, &y);
+  rb_funcall(list, rb_intern("<<"), 1, rb_float_new(x));
+  rb_funcall(list, rb_intern("<<"), 1, rb_float_new(y));
+
+  return list;
+}
+
 void init_swf_shape()
 {
   VALUE kedama  = rb_define_module("Kedama");
@@ -85,4 +100,5 @@ void init_swf_shape()
   rb_define_method(klass, "move_pen_to", move_pen_to, 2);
   rb_define_method(klass, "pen_x", pen_x, 0);
   rb_define_method(klass, "pen_y", pen_y, 0);
+  rb_define_method(klass, "pen", pen, 0);
 }
