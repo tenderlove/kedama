@@ -12,6 +12,15 @@ module SWF
       assert Kedama::SWF::Movie.new
     end
 
+    def test_new_takes_block
+      called = false
+      Kedama::SWF::Movie.new { |movie|
+        assert movie
+        called = true
+      }
+      assert called
+    end
+
     def test_add_text
       assert movie = Kedama::SWF::Movie.new
 

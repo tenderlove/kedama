@@ -2,6 +2,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', "helper"))
 
 module SWF
   class TestGradient < Kedama::TestCase
+    include Kedama::SWF
+
     def test_new
       assert Kedama::SWF::Gradient.new
     end
@@ -61,6 +63,36 @@ module SWF
       shape.draw_line_to(0, -100)
 
       movie.frame { |frame| frame << shape }
+    end
+
+    def test_new_takes_block
+      called = false
+      Gradient.new { |gradient| called = true }
+      assert called
+    end
+
+    def test_add_entry_add_to_movie_2
+      Movie.new { |movie|
+        movie.frame { |frame|
+          frame << Shape.new { |shape|
+            shape.right_fill_style = FillStyle.from_gradient(
+              Gradient.new { |gradient|
+                gradient.add_entry(0,   0,    0,  0,  255)
+                gradient.add_entry(0.2, 0,    10, 0,  255)
+                gradient.add_entry(0.3, 110,  0,  10, 255)
+                gradient.add_entry(0.4, 20,   0,  0,  255)
+                gradient.add_entry(0.5, 0,    20, 0,  255)
+                gradient.add_entry(0.6, 0,    0,  20, 255)
+                gradient.add_entry(0.7, 30,   0,  100,255)
+            }, 0x10)
+            shape.line = [1, 0, 0, 0, 255]
+            shape.draw_line_to(100, 0)
+            shape.draw_line_to(0, 100)
+            shape.draw_line_to(-100, 0)
+            shape.draw_line_to(0, -100)
+          }
+        }
+      }#.save('test02.swf')
     end
   end
 end

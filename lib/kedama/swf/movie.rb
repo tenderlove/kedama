@@ -1,6 +1,10 @@
 module Kedama
   module SWF
     class Movie
+      def initialize
+        yield self if block_given?
+      end
+
       def << thing
         add_thing thing
       end

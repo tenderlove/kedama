@@ -1,6 +1,10 @@
 module Kedama
   module SWF
     class Gradient
+      def initialize
+        yield self if block_given?
+      end
+
       ###
       # Add a control point.  Ratio defines the position of the control point.
       #

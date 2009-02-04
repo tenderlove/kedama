@@ -72,5 +72,14 @@ module SWF
       }
       shape.line = [10, 25, 0, 0, 128]
     end
+
+    def test_new_takes_block
+      called = false
+      Kedama::SWF::Shape.new { |shape|
+        assert shape
+        called = true
+      }
+      assert called
+    end
   end
 end
