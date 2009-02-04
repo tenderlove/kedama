@@ -7,5 +7,9 @@ module SWF
       assert style = Kedama::SWF::FillStyle.from_gradient(gradient, 0x10)
       assert style = Kedama::SWF::FillStyle.from_gradient(gradient, Kedama::SWF::FillStyle::SOLID)
     end
+
+    def test_new
+      assert gradient = Kedama::SWF::FillStyle.new(1, 2, 3, 4)
+    end
   end
 end

@@ -10,6 +10,17 @@ static VALUE from_gradient(VALUE klass, VALUE _gradient, VALUE style)
   return Data_Wrap_Struct(klass, NULL, destroySWFFillStyle, fill_style);
 }
 
+static VALUE new(VALUE klass, VALUE _r, VALUE _g, VALUE _b, VALUE _a)
+{
+  SWFFillStyle fill_style = newSWFSolidFillStyle(
+    NUM2INT(_r),
+    NUM2INT(_g),
+    NUM2INT(_b),
+    NUM2INT(_a)
+  );
+  return Data_Wrap_Struct(klass, NULL, destroySWFFillStyle, fill_style);
+}
+
 VALUE cKedamaSwfFillStyle;
 void init_swf_fill_style()
 {
@@ -20,4 +31,5 @@ void init_swf_fill_style()
   cKedamaSwfFillStyle = klass;
 
   rb_define_singleton_method(klass, "from_gradient", from_gradient, 2);
+  rb_define_singleton_method(klass, "new", new, 4);
 }
