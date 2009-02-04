@@ -19,5 +19,11 @@ module SWF
         frame << shape
       end
     end
+
+    def test_solid_fill
+      shape = Kedama::SWF::Shape.new
+      assert fill = shape.solid_fill(255, 0, 0, 255)
+      assert shape.right_fill = fill
+    end
   end
 end
