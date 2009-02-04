@@ -14,5 +14,6 @@
 #include <swf_fill.h>
 #include <swf_shape.h>
 #include <swf_gradient.h>
+#include <swf_fill_style.h>
 
 #endif
