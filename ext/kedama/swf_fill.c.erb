@@ -28,7 +28,7 @@ static VALUE <%= method_name %>(VALUE self, <%= c_func.params.map { |param|
   <%= c_name %> ctx;
   Data_Get_Struct(self, struct <%= c_name %>_s, ctx);
   <%= c_func.name %>(ctx, <%= c_func.params.map do |param|
-    "#{param.first == 'float' ? 'NUM2DBL' : 'NUM2INT'}(#{param.last})"
+    "#{conversion_func(param.first)}(#{param.last})"
   end.join(',') %>);
   return self;
 }

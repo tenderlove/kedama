@@ -30,6 +30,19 @@ task EXT => 'ext/kedama/Makefile' do
   end
 end
 
+def conversion_func type
+  case type
+  when 'float', 'double'
+    'NUM2DBL'
+  when 'int'
+    'NUM2INT'
+  when /const\s*char\s*\*/
+    'StringValuePtr'
+  else
+    nil
+  end
+end
+
 rule '.c' => '.c.erb' do |t|
   require 'erb'
 
@@ -43,12 +56,15 @@ rule '.c' => '.c.erb' do |t|
   File.read(ming_h).scan(/void\s*(#{c_name}[^\(]*)\(([^;]*);/).each do |sig|
     c_function = sig[0]
     parameters = sig[1].split(',').map { |part|
-      part.strip.sub(/\)$/, '').split(/\s+/)
+      part.strip.sub(/\)$/, '').match(/^(.*?)(\w+)$/)
+      [$1.strip, $2]
     }
     ruby_name = c_function.split('_').last.
       gsub(/XY/, '_xy'). # XY is special
       gsub(/([A-Z])/, '_\1').
       downcase.sub(/^set_/, '')
+
+    ruby_name = "kedama_#{ruby_name}" if ruby_name == 'remove'
     ruby_methods[ruby_name] = Struct.new(:name, :params).new(
       c_function, parameters[1..-1]
     )
@@ -61,7 +77,7 @@ rule '.c' => '.c.erb' do |t|
   puts "#{t.source} #{t.name}"
 end
 
-task :build => ['ext/kedama/swf_fill.c', EXT]
+task :build => ['ext/kedama/swf_fill.c', 'ext/kedama/swf_display_item.c', EXT]
 
 Rake::Task[:test].prerequisites << :build
 
