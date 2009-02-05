@@ -49,6 +49,87 @@ static VALUE skew_x(VALUE self, VALUE x)
   return self;
 }
 
+static VALUE skew_x_to(VALUE self, VALUE x)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_skewXTo(fill, NUM2DBL(x));
+  return self;
+}
+
+static VALUE skew_y(VALUE self, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_skewY(fill, NUM2DBL(y));
+  return self;
+}
+
+static VALUE skew_y_to(VALUE self, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_skewYTo(fill, NUM2DBL(y));
+  return self;
+}
+
+static VALUE scale_x(VALUE self, VALUE x)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_scaleX(fill, NUM2DBL(x));
+  return self;
+}
+
+static VALUE scale_x_to(VALUE self, VALUE x)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_scaleXTo(fill, NUM2DBL(x));
+  return self;
+}
+
+static VALUE scale_y(VALUE self, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_scaleY(fill, NUM2DBL(y));
+  return self;
+}
+
+static VALUE scale_y_to(VALUE self, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_scaleYTo(fill, NUM2DBL(y));
+  return self;
+}
+
+static VALUE scale_xy(VALUE self, VALUE x, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_scaleXY(fill, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
+static VALUE scale_xy_to(VALUE self, VALUE x, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_scaleXYTo(fill, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
 VALUE cKedamaSwfFill;
 
 void init_swf_fill()
@@ -64,4 +145,13 @@ void init_swf_fill()
   rb_define_method(klass, "move_to", move_to, 2);
   rb_define_method(klass, "fill_style", fill_style, 0);
   rb_define_method(klass, "skew_x", skew_x, 1);
+  rb_define_method(klass, "skew_x_to", skew_x_to, 1);
+  rb_define_method(klass, "skew_y", skew_y, 1);
+  rb_define_method(klass, "skew_y_to", skew_y_to, 1);
+  rb_define_method(klass, "scale_x",    scale_x, 1);
+  rb_define_method(klass, "scale_x_to", scale_x_to, 1);
+  rb_define_method(klass, "scale_y",    scale_y, 1);
+  rb_define_method(klass, "scale_y_to", scale_y_to, 1);
+  rb_define_method(klass, "scale_xy", scale_xy, 2);
+  rb_define_method(klass, "scale_xy_to", scale_xy_to, 2);
 }

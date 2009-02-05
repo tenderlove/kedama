@@ -5,6 +5,7 @@ module SWF
     def setup
       assert gradient = Kedama::SWF::Gradient.new
       assert @style = Kedama::SWF::FillStyle.from_gradient(gradient, 0x10)
+      assert @fill = Kedama::SWF::Fill.new(@style)
     end
 
     def test_new
@@ -29,9 +30,26 @@ module SWF
       assert_equal @style, fill.fill_style
     end
 
-    def test_skew_to
+    def test_scalexy
       assert fill = Kedama::SWF::Fill.new(@style)
-      assert fill.skew_x(5.4)
+      assert fill.scale_xy(10, 5.4)
+    end
+
+    def test_scalexy_to
+      assert fill = Kedama::SWF::Fill.new(@style)
+      assert fill.scale_xy_to(10, 5.4)
+    end
+
+    %w{ skew scale }.each do |verb|
+      %w{ x y }.each do |direction|
+        define_method(:"test_#{verb}_#{direction}") do
+          assert @fill.send(:"#{verb}_#{direction}", 5.4)
+        end
+
+        define_method(:"test_#{verb}_#{direction}_to") do
+          assert @fill.send(:"#{verb}_#{direction}_to", 5.4)
+        end
+      end
     end
   end
 end
