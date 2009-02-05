@@ -40,6 +40,19 @@ module SWF
       assert fill.scale_xy_to(10, 5.4)
     end
 
+    def test_rotate
+      assert @fill.rotate(5.4)
+    end
+
+    def test_rotate_to
+      assert @fill.rotate_to(5.4)
+    end
+
+    def test_matrix
+      assert @fill.matrix(1.2, 5, 10, 10.5, 11, 12)
+      assert @fill.matrix = [1.2, 5, 10, 10.5, 11, 12]
+    end
+
     %w{ skew scale }.each do |verb|
       %w{ x y }.each do |direction|
         define_method(:"test_#{verb}_#{direction}") do

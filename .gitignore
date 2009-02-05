@@ -8,4 +8,5 @@ ext/kedama/*.bundle
 ext/kedama/*.a
 ext/kedama/*.so
 ext/kedama/conftest.dSYM
+ext/kedama/swf_fill.c
 tags
