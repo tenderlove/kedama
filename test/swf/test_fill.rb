@@ -28,5 +28,10 @@ module SWF
       assert fill = Kedama::SWF::Fill.new(@style)
       assert_equal @style, fill.fill_style
     end
+
+    def test_skew_to
+      assert fill = Kedama::SWF::Fill.new(@style)
+      assert fill.skew_x(5.4)
+    end
   end
 end

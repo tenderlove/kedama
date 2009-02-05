@@ -40,6 +40,15 @@ static VALUE fill_style(VALUE self, VALUE x, VALUE y)
   return Data_Wrap_Struct(cKedamaSwfFillStyle, 0, 0,SWFFill_getFillStyle(fill));
 }
 
+static VALUE skew_x(VALUE self, VALUE x)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  SWFFill_skewX(fill, NUM2DBL(x));
+  return self;
+}
+
 VALUE cKedamaSwfFill;
 
 void init_swf_fill()
@@ -54,4 +63,5 @@ void init_swf_fill()
   rb_define_method(klass, "move", move, 2);
   rb_define_method(klass, "move_to", move_to, 2);
   rb_define_method(klass, "fill_style", fill_style, 0);
+  rb_define_method(klass, "skew_x", skew_x, 1);
 }
