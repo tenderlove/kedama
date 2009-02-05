@@ -1,0 +1,53 @@
+#include <swf_fill.h>
+
+static VALUE new(VALUE klass, VALUE _fill_style)
+{
+  SWFFillStyle fs;
+
+  Data_Get_Struct(_fill_style, struct SWFFillStyle_s, fs);
+
+  VALUE fill = Data_Wrap_Struct(klass, NULL, destroySWFFill, newSWFFill(fs));
+  if(rb_block_given_p()) rb_yield(fill);
+
+  return fill;
+}
+
+static VALUE fill_style(VALUE self, VALUE x, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  return Data_Wrap_Struct(cKedamaSwfFillStyle, 0, 0,SWFFill_getFillStyle(fill));
+}
+
+<% ruby_methods.each do |method_name, c_func| %>
+static VALUE <%= method_name %>(VALUE self, <%= c_func.params.map { |param|
+  "VALUE #{param.last}" }.join(", ")
+%>)
+{
+  <%= c_name %> ctx;
+  Data_Get_Struct(self, struct <%= c_name %>_s, ctx);
+  <%= c_func.name %>(ctx, <%= c_func.params.map do |param|
+    "#{param.first == 'float' ? 'NUM2DBL' : 'NUM2INT'}(#{param.last})"
+  end.join(',') %>);
+  return self;
+}
+<% end %>
+
+VALUE cKedamaSwfFill;
+
+void init_swf_fill()
+{
+  VALUE kedama  = rb_define_module("Kedama");
+  VALUE swf     = rb_define_module_under(kedama, "SWF");
+  VALUE klass   = rb_define_class_under(swf, "Fill", rb_cObject);
+
+  cKedamaSwfFill = klass;
+
+  rb_define_singleton_method(klass, "new", new, 1);
+  rb_define_method(klass, "fill_style", fill_style, 0);
+<% ruby_methods.each do |method_name, c_func| %>
+  rb_define_method(klass, "<%= method_name %>", <%= method_name %>, <%= c_func.params.length %>);
+<% end %>
+}
+
