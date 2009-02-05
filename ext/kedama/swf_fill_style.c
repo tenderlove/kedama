@@ -21,6 +21,14 @@ static VALUE new(VALUE klass, VALUE _r, VALUE _g, VALUE _b, VALUE _a)
   return Data_Wrap_Struct(klass, NULL, destroySWFFillStyle, fill_style);
 }
 
+static VALUE pointer_id(VALUE self)
+{
+  SWFFillStyle fs;
+  Data_Get_Struct(self, struct SWFFillStyle_s, fs);
+
+  return INT2NUM((int)(fs));
+}
+
 VALUE cKedamaSwfFillStyle;
 void init_swf_fill_style()
 {
@@ -32,4 +40,5 @@ void init_swf_fill_style()
 
   rb_define_singleton_method(klass, "from_gradient", from_gradient, 2);
   rb_define_singleton_method(klass, "new", new, 4);
+  rb_define_method(klass, "pointer_id", pointer_id, 0);
 }

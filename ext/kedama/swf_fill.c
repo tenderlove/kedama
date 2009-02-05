@@ -32,6 +32,14 @@ static VALUE move_to(VALUE self, VALUE x, VALUE y)
   return self;
 }
 
+static VALUE fill_style(VALUE self, VALUE x, VALUE y)
+{
+  SWFFill fill;
+  Data_Get_Struct(self, struct SWFFill_s, fill);
+
+  return Data_Wrap_Struct(cKedamaSwfFillStyle, 0, 0,SWFFill_getFillStyle(fill));
+}
+
 VALUE cKedamaSwfFill;
 
 void init_swf_fill()
@@ -45,4 +53,5 @@ void init_swf_fill()
   rb_define_singleton_method(klass, "new", new, 1);
   rb_define_method(klass, "move", move, 2);
   rb_define_method(klass, "move_to", move_to, 2);
+  rb_define_method(klass, "fill_style", fill_style, 0);
 }

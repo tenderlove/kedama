@@ -11,5 +11,10 @@ module SWF
     def test_new
       assert gradient = Kedama::SWF::FillStyle.new(1, 2, 3, 4)
     end
+
+    def test_pointer_id
+      gradient = Kedama::SWF::FillStyle.new(1, 2, 3, 4)
+      assert gradient.pointer_id
+    end
   end
 end

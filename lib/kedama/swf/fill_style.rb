@@ -12,6 +12,11 @@ module Kedama
       CLIPPED_BITMAP              = 0x41
       NONSMOOTHED_TILED_BITMAP    = 0x42
       NONSMOOTHED_CLIPPED_BITMAP  = 0x43
+
+      def == other
+        return false unless other.respond_to?(:pointer_id)
+        pointer_id == other.send(:pointer_id)
+      end
     end
   end
 end

@@ -272,7 +272,7 @@ module SWF
             shape.draw_line_to(0, -100)
           }
         }
-      }.save('test02.swf')
+      }
     end
   end
 end

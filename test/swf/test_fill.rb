@@ -23,5 +23,10 @@ module SWF
     def test_move_to
       assert Kedama::SWF::Fill.new(@style).move_to(50, 50)
     end
+
+    def test_get_fill_style
+      assert fill = Kedama::SWF::Fill.new(@style)
+      assert_equal @style, fill.fill_style
+    end
   end
 end
