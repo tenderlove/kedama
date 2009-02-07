@@ -17,5 +17,6 @@
 #include <swf_fill_style.h>
 #include <swf_display_item.h>
 #include <swf_color_transform.h>
+#include <swf_matrix.h>
 
 #endif

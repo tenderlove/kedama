@@ -96,6 +96,15 @@ static VALUE depth(VALUE self)
   return INT2NUM(SWFDisplayItem_getDepth(display_item));
 }
 
+static VALUE matrix(VALUE self)
+{
+  SWFDisplayItem display_item;
+  Data_Get_Struct(self, struct SWFDisplayItem_s, display_item);
+
+  return Data_Wrap_Struct(cKedamaSwfMatrix, NULL, NULL,
+      SWFDisplayItem_getMatrix(display_item));
+}
+
 VALUE cKedamaSwfDisplayItem;
 void init_swf_display_item()
 {
@@ -111,6 +120,7 @@ void init_swf_display_item()
   rb_define_method(klass, "scale", scale, 0);
   rb_define_method(klass, "skew", skew, 0);
   rb_define_method(klass, "depth", depth, 0);
+  rb_define_method(klass, "matrix", matrix, 0);
 
 <% ruby_methods.each do |method_name, c_func| %>
   <% next if method_name =~ /^get/ %>

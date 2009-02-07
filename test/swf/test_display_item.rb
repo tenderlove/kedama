@@ -104,7 +104,7 @@ module SWF
 
     # SWFMatrix SWFDisplayItem_getMatrix(SWFDisplayItem item);
     def test_matrix
-      flunk
+      assert matrix = @di.matrix
     end
 
     # void SWFDisplayItem_setMatrix(SWFDisplayItem i, double a, double b,
