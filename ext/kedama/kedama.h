@@ -16,5 +16,6 @@
 #include <swf_gradient.h>
 #include <swf_fill_style.h>
 #include <swf_display_item.h>
+#include <swf_color_transform.h>
 
 #endif
