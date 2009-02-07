@@ -22,6 +22,7 @@ module Kedama
       alias :name= :set_name
       alias :mask_level= :set_mask_level
       alias :ratio= :set_ratio
+      alias :color_transform= :set_c_xform
     end
   end
 end

@@ -142,7 +142,7 @@ module SWF
 
     # void SWFDisplayItem_setCXform(SWFDisplayItem item, SWFCXform cXform);
     def test_cx_form
-      flunk
+      assert @di.color_transform = ColorTransform.new(1,2,3,4,5.0,6.1,7.2,8.9)
     end
 
     # void SWFDisplayItem_setColorAdd(SWFDisplayItem item,
