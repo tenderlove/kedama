@@ -63,6 +63,7 @@ rule '.c' => '.c.erb' do |t|
     }
     ruby_name = c_function.split('_').last.
       gsub(/XY/, '_xy'). # XY is special
+      gsub(/CX/, '_cx_'). # CX is special
       gsub(/([A-Z])/, '_\1').
       downcase
 

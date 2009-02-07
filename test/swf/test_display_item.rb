@@ -102,21 +102,59 @@ module SWF
       assert_equal [2.0, 3.0], @di.skew
     end
 
-    # 
     # SWFMatrix SWFDisplayItem_getMatrix(SWFDisplayItem item);
+    def test_matrix
+      flunk
+    end
+
     # void SWFDisplayItem_setMatrix(SWFDisplayItem i, double a, double b,
     # 			      double c, double d, double x, double y);
-    # 
+    def test_matrix=
+      assert @di.matrix = [10, 1.2, 3.4, 5.6, 7.8, 9.1]
+    end
+
     # int SWFDisplayItem_getDepth(SWFDisplayItem item);
     # void SWFDisplayItem_setDepth(SWFDisplayItem item, int depth);
+    def test_depth
+      assert @di.depth = 10
+      assert_equal 10, @di.depth
+    end
+
     # void SWFDisplayItem_remove(SWFDisplayItem item);
+    def test_remove
+      assert @di.remove
+    end
+
     # void SWFDisplayItem_setName(SWFDisplayItem item, const char *name);
+    def test_name=
+      assert @di.name = 'aaron'
+    end
+
     # void SWFDisplayItem_setMaskLevel(SWFDisplayItem item, int masklevel);
+    def test_mask_level=
+      assert @di.mask_level = 10
+    end
+
     # void SWFDisplayItem_setRatio(SWFDisplayItem item, float ratio);
+    def test_ratio=
+      assert @di.ratio = 0.1
+    end
+
     # void SWFDisplayItem_setCXform(SWFDisplayItem item, SWFCXform cXform);
+    def test_cx_form
+      flunk
+    end
+
     # void SWFDisplayItem_setColorAdd(SWFDisplayItem item,
     # 				int r, int g, int b, int a);
+    def test_color_add=
+      assert @di.color_add = [5, 10, 20, 255]
+    end
+
     # void SWFDisplayItem_setColorMult(SWFDisplayItem item,
     # 				 float r, float g, float b, float a);
+    def test_color_mult=
+      assert @di.color_mult = [5.1, 10.2, 20.4, 255.1]
+    end
   end
 end
