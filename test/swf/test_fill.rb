@@ -49,7 +49,7 @@ module SWF
     end
 
     def test_matrix
-      assert @fill.matrix(1.2, 5, 10, 10.5, 11, 12)
+      assert @fill.set_matrix(1.2, 5, 10, 10.5, 11, 12)
       assert @fill.matrix = [1.2, 5, 10, 10.5, 11, 12]
     end
 

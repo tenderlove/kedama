@@ -14,7 +14,7 @@ module Kedama
       end
 
       def << thing
-        add_thing thing
+        add thing
       end
 
       def background= colors

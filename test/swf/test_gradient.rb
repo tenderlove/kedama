@@ -2,8 +2,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', "helper"))
 
 module SWF
   class TestGradient < Kedama::TestCase
-    include Kedama::SWF
-
     def test_new
       assert Kedama::SWF::Gradient.new
     end

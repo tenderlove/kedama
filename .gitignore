@@ -9,4 +9,5 @@ ext/kedama/*.a
 ext/kedama/*.so
 ext/kedama/conftest.dSYM
 ext/kedama/swf_fill.c
+ext/kedama/swf_display_item.c
 tags

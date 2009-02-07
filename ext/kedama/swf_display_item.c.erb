@@ -2,6 +2,7 @@
 
 <% ruby_methods.each do |method_name, c_func| %>
   <% next if method_name =~ /^get/ %>
+  <% next if method_name == 'scale' %>
 static VALUE <%= method_name %>(VALUE self<%= c_func.params.length > 0 ? ',' : '' %> <%= c_func.params.map { |param|
   "VALUE #{param.last}" }.join(", ")
 %>)
@@ -24,17 +25,72 @@ static VALUE <%= method_name %>(VALUE self<%= c_func.params.length > 0 ? ',' : '
 }
 <% end %>
 
+static VALUE position(VALUE self)
+{
+  SWFDisplayItem display_item;
+  Data_Get_Struct(self, struct SWFDisplayItem_s, display_item);
+
+  double x, y;
+  VALUE result = rb_ary_new();
+  SWFDisplayItem_getPosition(display_item, &x, &y);
+  rb_ary_push(result, rb_float_new(x));
+  rb_ary_push(result, rb_float_new(y));
+
+  return result;
+}
+
+static VALUE rotation(VALUE self)
+{
+  SWFDisplayItem display_item;
+  Data_Get_Struct(self, struct SWFDisplayItem_s, display_item);
+
+  double r;
+  SWFDisplayItem_getRotation(display_item, &r);
+
+  return rb_float_new(r);
+}
+
+static VALUE set_scale(VALUE self, VALUE x, VALUE y)
+{
+  SWFDisplayItem display_item;
+  Data_Get_Struct(self, struct SWFDisplayItem_s, display_item);
+
+  SWFDisplayItem_scale(display_item, NUM2DBL(x), NUM2DBL(y));
+
+  return self;
+}
+
+static VALUE scale(VALUE self)
+{
+  SWFDisplayItem display_item;
+  Data_Get_Struct(self, struct SWFDisplayItem_s, display_item);
+
+  double x, y;
+  VALUE result = rb_ary_new();
+  SWFDisplayItem_getScale(display_item, &x, &y);
+  rb_ary_push(result, rb_float_new(x));
+  rb_ary_push(result, rb_float_new(y));
+
+  return result;
+}
+
 VALUE cKedamaSwfDisplayItem;
 void init_swf_display_item()
 {
   VALUE kedama  = rb_define_module("Kedama");
   VALUE swf     = rb_define_module_under(kedama, "SWF");
-  VALUE klass   = rb_define_class_under(swf, "Shape", rb_cObject);
+  VALUE klass   = rb_define_class_under(swf, "DisplayItem", rb_cObject);
 
   cKedamaSwfDisplayItem = klass;
 
+  rb_define_method(klass, "position", position, 0);
+  rb_define_method(klass, "rotation", rotation, 0);
+  rb_define_method(klass, "set_scale", set_scale, 2);
+  rb_define_method(klass, "scale", scale, 0);
+
 <% ruby_methods.each do |method_name, c_func| %>
   <% next if method_name =~ /^get/ %>
+  <% next if method_name == 'scale' %>
   rb_define_method(klass, "<%= method_name %>", <%= method_name %>, <%= c_func.params.length %>);
 <% end %>
 }

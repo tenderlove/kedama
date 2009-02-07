@@ -13,6 +13,8 @@ HOE = Hoe.new('kedama', Kedama::VERSION) do |p|
     'ext/kedama/Makefile',
     'ext/kedama/*.{o,so,bundle,a,log,dll}',
     'ext/kedama/conftest.dSYM',
+    'ext/kedama/swf_display_item.c',
+    'ext/kedama/swf_fill.c',
   ]
   p.spec_extras = { :extensions => ["ext/kedama/extconf.rb"] }
 end
@@ -62,7 +64,7 @@ rule '.c' => '.c.erb' do |t|
     ruby_name = c_function.split('_').last.
       gsub(/XY/, '_xy'). # XY is special
       gsub(/([A-Z])/, '_\1').
-      downcase.sub(/^set_/, '')
+      downcase
 
     ruby_name = "kedama_#{ruby_name}" if ruby_name == 'remove'
     ruby_methods[ruby_name] = Struct.new(:name, :params).new(

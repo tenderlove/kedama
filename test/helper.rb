@@ -10,6 +10,7 @@ require 'kedama'
 
 module Kedama
   class TestCase < Test::Unit::TestCase
+    include Kedama::SWF
     unless RUBY_VERSION >= '1.9'
       undef :default_test
     end

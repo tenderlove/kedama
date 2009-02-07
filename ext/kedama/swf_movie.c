@@ -72,7 +72,7 @@ void init_swf_movie()
   rb_define_method(klass, "advance", advance, 0);
   rb_define_method(klass, "save", save, 1);
   rb_define_singleton_method(klass, "with_version", with_version, 1);
-  rb_define_private_method(klass, "add_thing", add_thing, 1);
+  rb_define_method(klass, "add", add_thing, 1);
   rb_define_private_method(klass, "native_set_background", native_set_background, 3);
   rb_define_private_method(klass, "native_set_dimension", native_set_dimension, 2);
 }
