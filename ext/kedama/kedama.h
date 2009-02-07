@@ -18,5 +18,6 @@
 #include <swf_display_item.h>
 #include <swf_color_transform.h>
 #include <swf_matrix.h>
+#include <swf_action.h>
 
 #endif
