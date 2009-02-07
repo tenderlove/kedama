@@ -96,7 +96,10 @@ module SWF
 
     # void SWFDisplayItem_getSkew(SWFDisplayItem item, double * xSkew, double * ySkew);
     def test_skew
-      flunk
+      assert @di.move_to(100, 100)
+      assert @di.skew_x_to(2.0)
+      assert @di.skew_y_to(3.0)
+      assert_equal [2.0, 3.0], @di.skew
     end
 
     # 

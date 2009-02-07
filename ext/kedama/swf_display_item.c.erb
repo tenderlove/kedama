@@ -74,6 +74,20 @@ static VALUE scale(VALUE self)
   return result;
 }
 
+static VALUE skew(VALUE self)
+{
+  SWFDisplayItem display_item;
+  Data_Get_Struct(self, struct SWFDisplayItem_s, display_item);
+
+  double x, y;
+  VALUE result = rb_ary_new();
+  SWFDisplayItem_getSkew(display_item, &x, &y);
+  rb_ary_push(result, rb_float_new(x));
+  rb_ary_push(result, rb_float_new(y));
+
+  return result;
+}
+
 VALUE cKedamaSwfDisplayItem;
 void init_swf_display_item()
 {
@@ -87,6 +101,7 @@ void init_swf_display_item()
   rb_define_method(klass, "rotation", rotation, 0);
   rb_define_method(klass, "set_scale", set_scale, 2);
   rb_define_method(klass, "scale", scale, 0);
+  rb_define_method(klass, "skew", skew, 0);
 
 <% ruby_methods.each do |method_name, c_func| %>
   <% next if method_name =~ /^get/ %>
