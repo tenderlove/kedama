@@ -23,5 +23,19 @@ module SWF
       assert @action.compile(7)
       assert @action.byte_code
     end
+
+    def test_debug=
+      assert @action.debug = true
+    end
+
+    def test_init
+      assert @action.init
+    end
+
+    def test_add_to_movie
+      Movie.new { |movie|
+        movie << @action.init
+      }
+    end
   end
 end

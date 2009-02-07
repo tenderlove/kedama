@@ -19,5 +19,6 @@
 #include <swf_color_transform.h>
 #include <swf_matrix.h>
 #include <swf_action.h>
+#include <swf_init_action.h>
 
 #endif

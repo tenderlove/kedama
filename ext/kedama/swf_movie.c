@@ -9,6 +9,9 @@ static VALUE add_thing(VALUE self, VALUE thing)
 
   SWFDisplayItem di = SWFMovie_add(movie, block);
 
+  /* Remove the GC pointer since the movie will clean it up */
+  RDATA(thing)->dfree = NULL;
+
   return Data_Wrap_Struct(cKedamaSwfDisplayItem, NULL, NULL, di);
 }
 

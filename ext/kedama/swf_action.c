@@ -3,7 +3,9 @@
 static VALUE new(VALUE klass, VALUE script)
 {
   SWFAction action = newSWFAction(StringValuePtr(script));
-  VALUE self = Data_Wrap_Struct(klass, NULL, destroySWFAction, action);
+  /* FIXME: we need to GC init_actions but they try to destroy the Action
+   * they were created from.... */
+  VALUE self = Data_Wrap_Struct(klass, NULL, NULL, action);
 
   if(rb_block_given_p()) rb_yield(self);
 
@@ -40,6 +42,16 @@ static VALUE byte_code(VALUE self)
   return codes;
 }
 
+static VALUE set_debug(VALUE self, VALUE debug)
+{
+  SWFAction action;
+  Data_Get_Struct(self, struct SWFAction_s, action);
+
+  SWFAction_setDebug(action, NUM2INT(debug));
+
+  return self;
+}
+
 VALUE cKedamaSwfAction;
 void init_swf_action()
 {
@@ -52,4 +64,5 @@ void init_swf_action()
   rb_define_singleton_method(klass, "new", new, 1);
   rb_define_method(klass, "compile", compile, 1);
   rb_define_method(klass, "byte_code", byte_code, 0);
+  rb_define_method(klass, "set_debug", set_debug, 1);
 }

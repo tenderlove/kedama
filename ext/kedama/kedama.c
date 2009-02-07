@@ -14,4 +14,5 @@ void Init_kedama()
   init_swf_color_transform();
   init_swf_matrix();
   init_swf_action();
+  init_swf_init_action();
 }
