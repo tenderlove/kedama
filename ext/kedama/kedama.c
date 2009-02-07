@@ -15,4 +15,5 @@ void Init_kedama()
   init_swf_matrix();
   init_swf_action();
   init_swf_init_action();
+  init_swf_button();
 }

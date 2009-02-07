@@ -20,5 +20,6 @@
 #include <swf_matrix.h>
 #include <swf_action.h>
 #include <swf_init_action.h>
+#include <swf_button.h>
 
 #endif

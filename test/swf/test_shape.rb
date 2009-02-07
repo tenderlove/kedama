@@ -40,6 +40,12 @@ module SWF
       assert_in_delta 69.875040, shape.pen[1], 0.03
     end
 
+    def test_draw_circle
+      shape = Kedama::SWF::Shape.new
+      shape.line = [2, 255, 0, 0, 255]
+      shape.draw_circle(20)
+    end
+
     def test_draw_cubic_to
       shape = Kedama::SWF::Shape.new
       assert shape.move_pen_to(167.000000, 69.875040)
