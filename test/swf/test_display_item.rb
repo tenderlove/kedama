@@ -111,6 +111,12 @@ module SWF
     # 			      double c, double d, double x, double y);
     def test_matrix=
       assert @di.matrix = [10, 1.2, 3.4, 5.6, 7.8, 9.1]
+      assert_equal 10.0, @di.matrix.scale_x
+      assert_equal 5.6, @di.matrix.scale_y
+      assert_equal 1.2, @di.matrix.rotate0
+      assert_equal 3.4, @di.matrix.rotate1
+      assert_equal 156, @di.matrix.translate_x
+      assert_equal 182, @di.matrix.translate_y
     end
 
     # int SWFDisplayItem_getDepth(SWFDisplayItem item);
