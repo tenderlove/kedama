@@ -95,6 +95,10 @@ module SWF
     end
 
     # void SWFDisplayItem_getSkew(SWFDisplayItem item, double * xSkew, double * ySkew);
+    def test_skew
+      flunk
+    end
+
     # 
     # SWFMatrix SWFDisplayItem_getMatrix(SWFDisplayItem item);
     # void SWFDisplayItem_setMatrix(SWFDisplayItem i, double a, double b,
