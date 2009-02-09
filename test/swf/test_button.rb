@@ -51,6 +51,24 @@ module SWF
           s.draw_line(0, 40)
           s.draw_line(0, 0)
         }
+        movie.frame { |frame|
+          frame.add(Button.new { |button|
+            button.add_character(
+              shape,
+              Button::HIT|Button::UP|Button::OVER|Button::DOWN
+            )
+
+            button.add_character(
+              shape,
+              Button::OVER|Button::DOWN
+            ).rotate(10).move(20, 0)
+
+            button.add_character(
+              shape,
+              Button::DOWN
+            ).rotate(20).move(40, 0)
+          }).move_to(50, 100)
+        }
       }
     end
   end

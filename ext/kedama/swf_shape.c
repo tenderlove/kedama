@@ -146,6 +146,16 @@ static VALUE draw_line_to(VALUE self, VALUE x, VALUE y)
 
   Data_Get_Struct(self, struct SWFShape_s, shape);
 
+  SWFShape_drawLineTo(shape, NUM2DBL(x), NUM2DBL(y));
+  return self;
+}
+
+static VALUE draw_line(VALUE self, VALUE x, VALUE y)
+{
+  SWFShape shape;
+
+  Data_Get_Struct(self, struct SWFShape_s, shape);
+
   SWFShape_drawLine(shape, NUM2DBL(x), NUM2DBL(y));
   return self;
 }
@@ -179,5 +189,6 @@ void init_swf_shape()
   rb_define_method(klass, "set_line", set_line, 5);
   rb_define_method(klass, "right_fill_style=", right_fill_style, 1);
   rb_define_method(klass, "draw_line_to", draw_line_to, 2);
+  rb_define_method(klass, "draw_line", draw_line, 2);
   rb_define_method(klass, "draw_circle", draw_circle, 1);
 }
