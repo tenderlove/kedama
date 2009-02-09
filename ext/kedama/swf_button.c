@@ -15,9 +15,9 @@ static VALUE add_character(VALUE self, VALUE _character, VALUE flags)
   Data_Get_Struct(_character, struct SWFCharacter_s, character);
 
   /* FIXME wrap ButtonRecord */
-  SWFButton_addCharacter(button, character, NUM2INT(flags));
+  SWFButtonRecord b = SWFButton_addCharacter(button, character, NUM2INT(flags));
 
-  return self;
+  return Data_Wrap_Struct(cKedamaSwfButtonRecord, NULL, NULL, b);
 }
 
 static VALUE add_action(VALUE self, VALUE _action, VALUE flags)

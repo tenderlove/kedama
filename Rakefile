@@ -15,6 +15,7 @@ HOE = Hoe.new('kedama', Kedama::VERSION) do |p|
     'ext/kedama/conftest.dSYM',
     'ext/kedama/swf_display_item.c',
     'ext/kedama/swf_fill.c',
+    'ext/kedama/swf_button_record.c',
   ]
   p.spec_extras = { :extensions => ["ext/kedama/extconf.rb"] }
 end
@@ -79,7 +80,11 @@ rule '.c' => '.c.erb' do |t|
   puts "#{t.source} #{t.name}"
 end
 
-task :build => ['ext/kedama/swf_fill.c', 'ext/kedama/swf_display_item.c', EXT]
+task :build => [
+  'ext/kedama/swf_fill.c',
+  'ext/kedama/swf_display_item.c',
+  'ext/kedama/swf_button_record.c',
+  EXT]
 
 Rake::Task[:test].prerequisites << :build
 

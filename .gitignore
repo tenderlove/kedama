@@ -10,4 +10,5 @@ ext/kedama/*.so
 ext/kedama/conftest.dSYM
 ext/kedama/swf_fill.c
 ext/kedama/swf_display_item.c
+ext/kedama/swf_button_record.c
 tags

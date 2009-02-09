@@ -21,5 +21,6 @@
 #include <swf_action.h>
 #include <swf_init_action.h>
 #include <swf_button.h>
+#include <swf_button_record.h>
 
 #endif

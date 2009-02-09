@@ -41,5 +41,17 @@ module SWF
         }
       }
     end
+
+    def test_rotate_and_move
+      Movie.new { |movie|
+        shape = Shape.new { |s|
+          s.line = [1, 255, 0, 0, 255]
+          s.right_fill = s.solid_fill(255, 255, 0, 255)
+          s.draw_line(100, 0)
+          s.draw_line(0, 40)
+          s.draw_line(0, 0)
+        }
+      }
+    end
   end
 end
