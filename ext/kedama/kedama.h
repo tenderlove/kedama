@@ -22,5 +22,7 @@
 #include <swf_init_action.h>
 #include <swf_button.h>
 #include <swf_button_record.h>
+#include <swf_blur.h>
+#include <swf_filter.h>
 
 #endif

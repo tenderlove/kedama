@@ -17,4 +17,6 @@ void Init_kedama()
   init_swf_init_action();
   init_swf_button();
   init_swf_button_record();
+  init_swf_blur();
+  init_swf_filter();
 }

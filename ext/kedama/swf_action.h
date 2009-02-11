@@ -8,4 +8,3 @@ extern VALUE cKedamaSwfAction;
 void init_swf_action();
 
 #endif
-
